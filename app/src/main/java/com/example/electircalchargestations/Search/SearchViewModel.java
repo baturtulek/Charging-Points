@@ -5,31 +5,31 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
-import com.example.electircalchargestations.remote.RestAdapter;
+import com.example.electircalchargestations.remote.Repository;
 import java.util.List;
 
 public class SearchViewModel extends AndroidViewModel {
 
-    private RestAdapter adapter;
-    private MutableLiveData<List<Country>> countryList = new MutableLiveData<>();
+    private Repository repository;
+    private MutableLiveData<List<Country>>          countryList;
+    private MutableLiveData<List<ChargeStation>>    stationList;
 
     public SearchViewModel(@NonNull Application application) {
         super(application);
-        adapter = new RestAdapter();
+        repository  = Repository.getInstance();
     }
 
-    //Activity Call
     public MutableLiveData<List<Country>> getCountryList() {
-        if(countryList.getValue().isEmpty() || countryList.getValue() == null){
-            loadListFromAdapter();
-        }
-        //Log.d("CountryListInViewModel",countryList.getValue().toString());
+
+        countryList = repository.getCountryListFromApi();
         return countryList;
     }
 
-    private void loadListFromAdapter() {
-        Log.d("viewModelC",adapter.getCountryList().toString());
-        countryList.setValue(adapter.getCountryList());
+
+    public MutableLiveData<List<ChargeStation>> getChargeStationList(String countryCode){
+        stationList = repository.getChargeStationsByCountry(countryCode);
+        return stationList;
     }
 }
