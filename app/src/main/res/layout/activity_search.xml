@@ -9,30 +9,33 @@
 
     <Spinner
         android:id="@+id/countrySpinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
         style="?android:attr/spinnerItemStyle"
-        android:singleLine="true"
+        android:layout_width="214dp"
+        android:layout_height="62dp"
+        android:dropDownWidth="225dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="99dp"
         android:ellipsize="marquee"
-        android:textColor="#ffffff"
+        android:singleLine="true"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="390dp"
-        android:layout_height="629dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countrySpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/countrySpinner"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

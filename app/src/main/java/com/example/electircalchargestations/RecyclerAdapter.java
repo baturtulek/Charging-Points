@@ -2,14 +2,13 @@ package com.example.electircalchargestations;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import com.example.electircalchargestations.Model.AddressInfo;
 import com.example.electircalchargestations.Model.ChargeStation;
-import com.example.electircalchargestations.Model.Country;
 
 import java.util.ArrayList;
 
@@ -36,14 +35,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-
         ChargeStation station   = stationList.get(position);
         AddressInfo address     = station.getAddressInfo();
         String title            = address.getTitle();
-        String address1         = address.getAddressLine1();
+        String addressStr = address.getAddressLine1() + " " + address.getAddressLine2();
 
-        holder.name.setText(title);
-        holder.avg.setText("Address : " + address1);
+
+        holder.addressTitle.setText(title);
+        holder.addressLine.setText("Address    : " + addressStr);
+        holder.latitudeLangitude.setText("Latitude    : " + address.getLatitude() + "\nLangitude : " + address.getLongitude());
+        holder.operatorTitle.setText("Operator   : " + station.getOperatorInfo().getTitle());
     }
 
     @Override
@@ -52,13 +53,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView    name;
-        TextView    avg;
+        TextView    addressTitle;
+        TextView    addressLine;
+        TextView    latitudeLangitude;
+        TextView    operatorTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name    = itemView.findViewById(R.id.tv);
-            avg     = itemView.findViewById(R.id.tvAvg);
+            addressTitle        = itemView.findViewById(R.id.addressTitle);
+            addressLine         = itemView.findViewById(R.id.adressLine);
+            latitudeLangitude   = itemView.findViewById(R.id.latitudeLangitude);
+            operatorTitle       = itemView.findViewById(R.id.operator);
+
         }
     }
 }

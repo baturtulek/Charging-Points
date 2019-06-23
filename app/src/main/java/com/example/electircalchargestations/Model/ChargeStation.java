@@ -27,7 +27,7 @@ public class ChargeStation {
     private float                   DataQualityLevel;
     private String                  DateCreated;
     private float                   SubmissionStatusTypeID;
-    private SubmissionStatus        SubmissionStatus;
+    //private SubmissionStatus        SubmissionStatus;
     private String                  UserComments = null;
     private String                  PercentageSimilarity = null;
     private ArrayList<Connection>   Connections = new ArrayList();
@@ -128,9 +128,7 @@ public class ChargeStation {
         return SubmissionStatusTypeID;
     }
 
-    public SubmissionStatus getSubmissionStatus() {
-        return SubmissionStatus;
-    }
+    //public SubmissionStatus getSubmissionStatus() {return SubmissionStatus;}
 
     public String getUserComments() {
         return UserComments;
@@ -220,7 +218,7 @@ public class ChargeStation {
 
     public void setSubmissionStatusTypeID(float SubmissionStatusTypeID) { this.SubmissionStatusTypeID = SubmissionStatusTypeID; }
 
-    public void setSubmissionStatus(SubmissionStatus SubmissionStatusObject) { this.SubmissionStatus = SubmissionStatusObject; }
+    //public void setSubmissionStatus(SubmissionStatus SubmissionStatusObject) { this.SubmissionStatus = SubmissionStatusObject; }
 
     public void setUserComments(String UserComments) {
         this.UserComments = UserComments;
@@ -262,7 +260,7 @@ public class ChargeStation {
                 ", DataQualityLevel=" + DataQualityLevel +
                 ", DateCreated='" + DateCreated + '\'' +
                 ", SubmissionStatusTypeID=" + SubmissionStatusTypeID +
-                ", SubmissionStatus=" + SubmissionStatus +
+                //", SubmissionStatus=" + SubmissionStatus +
                 ", UserComments='" + UserComments + '\'' +
                 ", PercentageSimilarity='" + PercentageSimilarity + '\'' +
                 ", Connections=" + Connections +

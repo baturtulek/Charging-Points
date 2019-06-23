@@ -1,11 +1,24 @@
 package com.example.electircalchargestations.Model;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity(tableName = "country")
 public class Country {
 
-    private String ISOCode;
-    private String ContinentCode;
-    private float ID;
-    private String Title;
+    @PrimaryKey
+    @ColumnInfo(name = "country_id")
+    private int     ID;
+
+    @ColumnInfo(name = "country_code")
+    private String  ISOCode;
+
+    @ColumnInfo(name = "continent_code")
+    private String  ContinentCode;
+
+    @ColumnInfo(name = "country_title")
+    private String  Title;
+
 
     public String getISOCode() {
         return ISOCode;
@@ -15,7 +28,7 @@ public class Country {
         return ContinentCode;
     }
 
-    public float getID() {
+    public int getID() {
         return ID;
     }
 
@@ -31,7 +44,7 @@ public class Country {
         this.ContinentCode = ContinentCode;
     }
 
-    public void setID(float ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

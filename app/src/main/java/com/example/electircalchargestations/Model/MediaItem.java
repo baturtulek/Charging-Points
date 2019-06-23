@@ -11,7 +11,7 @@ public class MediaItem {
     private boolean IsFeaturedItem;
     private boolean IsExternalResource;
     private Object MetadataValue;
-    private User User;
+    //private User User;
     private String DateCreated;
 
     public Integer getID() {
@@ -88,13 +88,9 @@ public class MediaItem {
         this.MetadataValue = metadataValue;
     }
 
-    public User getUser() {
-        return User;
-    }
+    //public User getUser() { return User; }
 
-    public void setUser(User user) {
-        this.User = user;
-    }
+    //public void setUser(User user) {this.User = user;}
 
     public String getDateCreated() {
         return DateCreated;
@@ -117,7 +113,7 @@ public class MediaItem {
                 ", isFeaturedItem=" + IsFeaturedItem +
                 ", isExternalResource=" + IsExternalResource +
                 ", metadataValue=" + MetadataValue +
-                ", user=" + User.toString() +
+                //", user=" + User.toString() +
                 ", dateCreated='" + DateCreated + '\'' +
                 '}';
     }

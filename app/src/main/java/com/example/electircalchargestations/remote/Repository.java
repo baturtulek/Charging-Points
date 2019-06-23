@@ -1,14 +1,22 @@
 package com.example.electircalchargestations.remote;
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
+import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
+import com.example.electircalchargestations.Model.ConnectionType;
 import com.example.electircalchargestations.Model.Country;
-import com.example.electircalchargestations.RetrofitClient;
-import com.example.electircalchargestations.Search.CountryWrapper;
-import com.example.electircalchargestations.Search.SearchViewModel;
+import com.example.electircalchargestations.Model.Level;
+import com.example.electircalchargestations.RetrofitService;
+import com.example.electircalchargestations.ReferenceDataRequestBeans;
+import com.example.electircalchargestations.local.AppDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,46 +24,64 @@ import retrofit2.Response;
 
 public class Repository {
 
-    private static RestAPI      restAPI;
-    private static Repository   repository;
+    private AppDatabase       database;
+    private static WebService webService;
+    private static Repository repository;
 
-    public Repository(){
-        restAPI = RetrofitClient.getRetrofitInstance().create(RestAPI.class);
+    private Repository(Application application){
+        webService  = RetrofitService.getRetrofitInstance().create(WebService.class);
+        database    = AppDatabase.getInstance(application);
     }
 
-    public static Repository getInstance(){
+    public synchronized static Repository getInstance(Application application){
         if (repository == null){
-            repository = new Repository();
+            repository = new Repository(application);
         }
         return repository;
     }
 
-    public MutableLiveData<List<Country>> getCountryListFromApi() {
+    public MediatorLiveData<List<Country>> getCountryList(){
+        MediatorLiveData<List<Country>> mediatorList        = new MediatorLiveData<>();
+        final LiveData<List<Country>>   countryListFromDb   = database.countryDao().getCountryList();
 
-        MutableLiveData<List<Country>> countryData  = new MutableLiveData<>();
-        Call<CountryWrapper> call                   = restAPI.getCountriesFromApi();
-
-        call.enqueue(new Callback<CountryWrapper>() {
+        mediatorList.addSource(countryListFromDb, new Observer<List<Country>>() {
             @Override
-            public void onResponse(Call<CountryWrapper> call, Response<CountryWrapper> response) {
-                if(response.isSuccessful()){
-                    countryData.setValue(response.body().getCountryList());
+            public void onChanged(@Nullable List<Country> countries) {
+                if(countries == null || countries.isEmpty()){
+                    getReferenceDataFromApi();
+                }else{
+                    mediatorList.removeSource(countryListFromDb);
+                    mediatorList.setValue(countries);
                 }
             }
-
-            @Override
-            public void onFailure(Call<CountryWrapper> call, Throwable t) {
-                countryData.setValue(null);
-            }
         });
-        return countryData;
+        return mediatorList;
+    }
+
+
+    private void getReferenceDataFromApi() {
+        Call<ReferenceDataRequestBeans> call = webService.getReferenceData();
+
+        call.enqueue(new Callback<ReferenceDataRequestBeans>(){
+            @Override
+            public void onResponse(Call<ReferenceDataRequestBeans> call, Response<ReferenceDataRequestBeans> response) {
+                if(response.isSuccessful()){
+                    insertReferenceData(
+                            response.body().getCountryList(),
+                            response.body().getChargerTypeList(),
+                            response.body().getConnectionTypeList());
+                }
+            }
+            @Override
+            public void onFailure(Call<ReferenceDataRequestBeans> call, Throwable t) { }
+        });
     }
 
 
     public MutableLiveData<List<ChargeStation>> getChargeStationsByCountry(String countryCode){
 
         MutableLiveData<List<ChargeStation>> stationData    = new MutableLiveData<>();
-        Call<List<ChargeStation>> call                      = restAPI.getChargeStationListByCountry(countryCode);
+        Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(countryCode, Constants.OUTPUT_FORMAT,Constants.MAX_RESULT);
 
         call.enqueue(new Callback<List<ChargeStation>>() {
             @Override
@@ -70,27 +96,15 @@ public class Repository {
         return stationData;
     }
 
-
-
-
-    public void getStation() {
-
-        Call<List<ChargeStation>> call = restAPI.getStations();
-
-        call.enqueue(new Callback<List<ChargeStation>>() {
+    private void insertReferenceData(List<Country> countryList, List<Level> chargerTypeList, List<ConnectionType> connectionTypeList){
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            public void onResponse(Call<List<ChargeStation>> call, Response<List<ChargeStation>> response) {
-                List<ChargeStation> stations = response.body();
-
-                String stationInfo = "";
-                for(ChargeStation station : stations){
-                    stationInfo += station.toString();
-                }
-                Log.d("Stations",stationInfo);
+            protected Void doInBackground(Void... voids) {
+                database.countryDao().insertCountryList(countryList);
+                database.chargerTypeDao().insertChargerTypeList(chargerTypeList);
+                database.connectionTypeDao().insertConnectionTypeList(connectionTypeList);
+                return null;
             }
-            @Override
-            public void onFailure(Call<List<ChargeStation>> call, Throwable t) { }
-        });
+        }.execute();
     }
-
 }

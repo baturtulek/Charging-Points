@@ -1,11 +1,23 @@
 package com.example.electircalchargestations.Model;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity(tableName = "charger_type")
 public class Level {
 
-    private String Comments;
-    private Boolean IsFastChargeCapable;
-    private Integer ID;
-    private String Title;
+    @PrimaryKey
+    @ColumnInfo(name = "charger_id")
+    private int     ID;
+
+    @ColumnInfo(name = "comments")
+    private String  Comments;
+
+    @ColumnInfo(name = "is_fast_charge_capable")
+    private boolean IsFastChargeCapable;
+
+    @ColumnInfo(name = "title")
+    private String  Title;
 
     public String getComments() {
         return Comments;
@@ -15,15 +27,13 @@ public class Level {
         this.Comments = comments;
     }
 
-    public Boolean getIsFastChargeCapable() {
+    public boolean getIsFastChargeCapable() {
         return IsFastChargeCapable;
     }
 
-    public void setIsFastChargeCapable(Boolean isFastChargeCapable) {
-        this.IsFastChargeCapable = isFastChargeCapable;
-    }
+    public void setIsFastChargeCapable(Boolean isFastChargeCapable) { this.IsFastChargeCapable = isFastChargeCapable; }
 
-    public Integer getID() {
+    public int getID() {
         return ID;
     }
 

@@ -1,22 +1,37 @@
 package com.example.electircalchargestations.Model;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity(tableName = "connection_type")
 public class ConnectionType {
 
-    private Object FormalName;
-    private Boolean IsDiscontinued;
-    private Boolean IsObsolete;
-    private Integer ID;
-    private String Title;
+    @PrimaryKey
+    @ColumnInfo(name = "connection_id")
+    private int     ID;
 
-    public Object getFormalName() {
+    @ColumnInfo(name = "formal_name")
+    private String  FormalName;
+
+    @ColumnInfo(name = "is_discontinued")
+    private boolean IsDiscontinued;
+
+    @ColumnInfo(name = "is_obsolete")
+    private boolean IsObsolete;
+
+    @ColumnInfo(name = "title")
+    private String  Title;
+
+
+    public String getFormalName() {
         return FormalName;
     }
 
-    public void setFormalName(Object formalName) {
+    public void setFormalName(String formalName) {
         this.FormalName = formalName;
     }
 
-    public Boolean getIsDiscontinued() {
+    public boolean getIsDiscontinued() {
         return IsDiscontinued;
     }
 
@@ -24,7 +39,7 @@ public class ConnectionType {
         this.IsDiscontinued = isDiscontinued;
     }
 
-    public Boolean getIsObsolete() {
+    public boolean getIsObsolete() {
         return IsObsolete;
     }
 
@@ -32,7 +47,7 @@ public class ConnectionType {
         this.IsObsolete = isObsolete;
     }
 
-    public Integer getID() {
+    public int getID() {
         return ID;
     }
 

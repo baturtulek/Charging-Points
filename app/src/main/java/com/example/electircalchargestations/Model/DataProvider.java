@@ -4,7 +4,7 @@ public class DataProvider {
 
     private String          WebsiteURL;
     private String          Comments                = null;
-    DataProviderStatusType  DataProviderStatusType;
+    //DataProviderStatusType  DataProviderStatusType;
     private boolean         IsRestrictedEdit;
     private boolean         IsOpenDataLicensed;
     private boolean         IsApprovedImport;
@@ -17,7 +17,7 @@ public class DataProvider {
 
     public String getComments() { return Comments; }
 
-    public DataProviderStatusType getDataProviderStatusType() { return DataProviderStatusType; }
+    //public DataProviderStatusType getDataProviderStatusType() { return DataProviderStatusType; }
 
     public boolean getIsRestrictedEdit() { return IsRestrictedEdit; }
 
@@ -37,7 +37,7 @@ public class DataProvider {
 
     public void setComments(String Comments) { this.Comments = Comments; }
 
-    public void setDataProviderStatusType(DataProviderStatusType DataProviderStatusTypeObject) { this.DataProviderStatusType = DataProviderStatusTypeObject; }
+    //public void setDataProviderStatusType(DataProviderStatusType DataProviderStatusTypeObject) { this.DataProviderStatusType = DataProviderStatusTypeObject; }
 
     public void setIsRestrictedEdit(boolean IsRestrictedEdit) { this.IsRestrictedEdit = IsRestrictedEdit; }
 
@@ -58,7 +58,7 @@ public class DataProvider {
         return "DataProvider{" +
                 "WebsiteURL='" + WebsiteURL + '\'' +
                 ", Comments='" + Comments + '\'' +
-                ", DataProviderStatusType=" + DataProviderStatusType.toString() +
+                //", DataProviderStatusType=" + DataProviderStatusType.toString() +
                 ", IsRestrictedEdit=" + IsRestrictedEdit +
                 ", IsOpenDataLicensed=" + IsOpenDataLicensed +
                 ", IsApprovedImport=" + IsApprovedImport +
