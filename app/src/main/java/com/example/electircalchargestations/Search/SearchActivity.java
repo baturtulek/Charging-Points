@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
@@ -21,11 +24,14 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    SearchViewModel             viewModel;
-    Spinner                     sItems;
-    RecyclerView                mRecyclerView;
-    RecyclerAdapter             adapter;
-    RecyclerView.LayoutManager  layoutManager;
+
+    private SearchViewModel             viewModel;
+    private ProgressBar                 progressBar;
+    private TextView                    noDataTextView;
+    private Spinner                     sItems;
+    private RecyclerView                mRecyclerView;
+    private RecyclerAdapter             adapter;
+    private RecyclerView.LayoutManager  layoutManager;
 
     ArrayList<String> spinnerArray =  new ArrayList<>();
 
@@ -40,7 +46,8 @@ public class SearchActivity extends AppCompatActivity {
 
         viewModel       = ViewModelProviders.of(this).get(SearchViewModel.class);
         sItems          = findViewById(R.id.countrySpinner);
-
+        progressBar     = findViewById(R.id.progressBar);
+        noDataTextView  = findViewById(R.id.textView2);
         mRecyclerView   = findViewById(R.id.recyclerView);
         layoutManager   = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -50,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Country> countries) {
                 fillSpinner(countries);
-
+                progressBar.setVisibility(View.INVISIBLE);
             }
         };
         viewModel.getCountryList().observe(this, countryObserver);
@@ -60,8 +67,12 @@ public class SearchActivity extends AppCompatActivity {
         Observer<List<ChargeStation>> stationObserver = new Observer<List<ChargeStation>>() {
             @Override
             public void onChanged(@Nullable List<ChargeStation> stations) {
-                adapter = new RecyclerAdapter(SearchActivity.this, (ArrayList)stations);
+                adapter = new RecyclerAdapter(SearchActivity.this, (ArrayList) stations);
                 mRecyclerView.setAdapter(adapter);
+                if(stations.isEmpty()) {
+                    noDataTextView.setVisibility(View.VISIBLE);
+                }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         };
 
@@ -69,6 +80,8 @@ public class SearchActivity extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                noDataTextView.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 String selectedItem = sItems.getSelectedItem().toString();
                 String countryCode = selectedItem.substring(0, 2);
                 viewModel.getChargeStationList(countryCode).observe(SearchActivity.this, stationObserver);

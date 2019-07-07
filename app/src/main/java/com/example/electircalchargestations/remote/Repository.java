@@ -47,6 +47,7 @@ public class Repository {
         mediatorList.addSource(countryListFromDb, new Observer<List<Country>>() {
             @Override
             public void onChanged(@Nullable List<Country> countries) {
+                Log.d("dbList",countries.toString());
                 if(countries == null || countries.isEmpty()){
                     getReferenceDataFromApi();
                 }else{
@@ -66,6 +67,7 @@ public class Repository {
             @Override
             public void onResponse(Call<ReferenceDataRequestBeans> call, Response<ReferenceDataRequestBeans> response) {
                 if(response.isSuccessful()){
+                    Log.d("APICALL",response.body().getCountryList().toString());
                     insertReferenceData(
                             response.body().getCountryList(),
                             response.body().getChargerTypeList(),
@@ -78,7 +80,7 @@ public class Repository {
     }
 
 
-    public MutableLiveData<List<ChargeStation>> getChargeStationsByCountry(String countryCode){
+    public MutableLiveData<List<ChargeStation>> getChargeStationListByCountry(String countryCode){
 
         MutableLiveData<List<ChargeStation>> stationData    = new MutableLiveData<>();
         Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(countryCode, Constants.OUTPUT_FORMAT,Constants.MAX_RESULT);

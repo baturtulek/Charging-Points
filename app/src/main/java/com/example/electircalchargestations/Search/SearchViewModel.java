@@ -27,6 +27,6 @@ public class SearchViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<List<ChargeStation>> getChargeStationList(String countryCode){
-        return repository.getChargeStationsByCountry(countryCode);
+        return repository.getChargeStationListByCountry(countryCode);
     }
 }
