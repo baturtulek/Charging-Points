@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import com.example.electircalchargestations.Model.AddressInfo;
 import com.example.electircalchargestations.Model.ChargeStation;
@@ -38,8 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         ChargeStation station   = stationList.get(position);
         AddressInfo address     = station.getAddressInfo();
         String title            = address.getTitle();
-        String addressStr = address.getAddressLine1() + " " + address.getAddressLine2();
-
+        String addressStr       = address.getAddressLine1() + " " + address.getAddressLine2();
 
         holder.addressTitle.setText(title);
         holder.addressLine.setText("Address    : " + addressStr);

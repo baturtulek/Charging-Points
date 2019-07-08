@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
 public interface WebService {
 
-    @GET(Constants.END_POINT_COUNTRY)
+    @GET(Constants.END_POINT_REFERENCE_DATA)
     Call<ReferenceDataRequestBeans> getReferenceData();
 
     @GET(Constants.END_POINT)

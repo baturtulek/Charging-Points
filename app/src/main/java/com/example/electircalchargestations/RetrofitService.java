@@ -6,6 +6,8 @@ public class RetrofitService {
 
     private static Retrofit retrofit;
 
+    protected RetrofitService(){ }
+
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()

@@ -83,7 +83,10 @@ public class Repository {
     public MutableLiveData<List<ChargeStation>> getChargeStationListByCountry(String countryCode){
 
         MutableLiveData<List<ChargeStation>> stationData    = new MutableLiveData<>();
-        Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(countryCode, Constants.OUTPUT_FORMAT,Constants.MAX_RESULT);
+        Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(
+                countryCode,
+                Constants.OUTPUT_FORMAT,
+                Constants.MAX_RESULT);
 
         call.enqueue(new Callback<List<ChargeStation>>() {
             @Override
