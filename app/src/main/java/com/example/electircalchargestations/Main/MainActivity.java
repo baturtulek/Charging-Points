@@ -42,7 +42,6 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
             case  R.id.navigation_discover:
                 fragment = new DiscoverFragment();
                 break;
-
             case R.id.navigation_map:
                 fragment = new MapFragment();
                 break;

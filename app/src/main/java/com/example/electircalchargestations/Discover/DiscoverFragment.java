@@ -20,6 +20,8 @@ import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
 import com.example.electircalchargestations.RecyclerAdapter;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +80,8 @@ public class DiscoverFragment extends Fragment {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                adapter = new RecyclerAdapter(getContext(), new ArrayList<>());
+                mRecyclerView.setAdapter(adapter);
                 noDataTextView.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
                 String selectedItem = sItems.getSelectedItem().toString();
