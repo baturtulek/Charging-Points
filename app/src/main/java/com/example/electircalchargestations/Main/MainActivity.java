@@ -13,22 +13,28 @@ import com.example.electircalchargestations.Discover.DiscoverFragment;
 
 public class  MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    private FragmentManager mFragmentManager = null;
-    private Fragment  activeFragment      = null;
-    private Fragment  discoverFragment    = new DiscoverFragment();
-    private Fragment  mapFragment         = new MapFragment();
-    private Fragment  optionsFragment     = new OptionsFragment();
-
+    private FragmentManager mFragmentManager    = null;
+    private Fragment    activeFragment          = null,
+                        discoverFragment        = new DiscoverFragment(),
+                        mapFragment             = new MapFragment(),
+                        optionsFragment         = new OptionsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().hide(); //hide the title bar
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(this);
 
-        initializeFragments();
+        initFragments();
+
     }
 
     @Override
@@ -54,14 +60,14 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         return true;
     }
 
-    private void initializeFragments(){
+    private void initFragments(){
         if (mFragmentManager == null && activeFragment == null) {
             mFragmentManager    = getSupportFragmentManager();
             activeFragment      = discoverFragment;
 
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, discoverFragment, "1").commit();
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, mapFragment, "2").hide(mapFragment).commit();
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, optionsFragment, "3").hide(optionsFragment).commit();
+            mFragmentManager.beginTransaction().add(R.id.fragment_container, discoverFragment,  "1").commit();
+            mFragmentManager.beginTransaction().add(R.id.fragment_container, mapFragment,       "2").hide(mapFragment).commit();
+            mFragmentManager.beginTransaction().add(R.id.fragment_container, optionsFragment,   "3").hide(optionsFragment).commit();
         }
     }
 
@@ -69,4 +75,11 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         mFragmentManager.beginTransaction().hide(activeFragment).show(toShow).commit();
         activeFragment = toShow;
     }
+
+    private Fragment getCurrentFragment() {
+        Fragment currentFragment = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_container);
+        return currentFragment;
+    }
+
 }

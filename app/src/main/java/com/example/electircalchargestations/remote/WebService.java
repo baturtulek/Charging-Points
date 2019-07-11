@@ -1,11 +1,7 @@
 package com.example.electircalchargestations.remote;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-
 import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.ReferenceDataRequestBeans;
-
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;

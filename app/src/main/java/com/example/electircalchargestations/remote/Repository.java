@@ -7,7 +7,6 @@ import android.arch.lifecycle.Observer;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
 import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.ConnectionType;
@@ -16,7 +15,6 @@ import com.example.electircalchargestations.Model.Level;
 import com.example.electircalchargestations.RetrofitService;
 import com.example.electircalchargestations.ReferenceDataRequestBeans;
 import com.example.electircalchargestations.local.AppDatabase;
-
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;

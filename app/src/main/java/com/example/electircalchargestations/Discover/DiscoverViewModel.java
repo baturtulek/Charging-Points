@@ -4,7 +4,6 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
-
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.remote.Repository;

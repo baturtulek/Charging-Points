@@ -5,20 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Discover.DiscoverFragment">
+    tools:context=".Discover.DiscoverFragment"
+    android:background="#FFFFFF">
 
     <Spinner
         android:id="@+id/countrySpinner"
-        style="?android:attr/spinnerItemStyle"
-        android:layout_width="214dp"
-        android:layout_height="62dp"
+        android:spinnerMode="dropdown"
+        android:layout_width="230dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="90dp"
         android:dropDownWidth="225dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="99dp"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

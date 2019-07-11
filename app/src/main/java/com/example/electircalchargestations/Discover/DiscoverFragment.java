@@ -1,8 +1,10 @@
 package com.example.electircalchargestations.Discover;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,22 +14,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
 import com.example.electircalchargestations.RecyclerAdapter;
+import com.example.electircalchargestations.SpinnerAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DiscoverFragment extends Fragment {
 
-    private DiscoverViewModel viewModel;
+    private DiscoverViewModel           viewModel;
     private ProgressBar                 progressBar;
     private TextView                    noDataTextView;
     private Spinner                     sItems;
@@ -35,15 +37,10 @@ public class DiscoverFragment extends Fragment {
     private RecyclerAdapter             adapter;
     private RecyclerView.LayoutManager  layoutManager;
 
-    ArrayList<String> spinnerArray =  new ArrayList<>();
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_discover,null);
-
-        //getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                //WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         viewModel       = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         sItems          = view.findViewById(R.id.countrySpinner);
@@ -96,13 +93,14 @@ public class DiscoverFragment extends Fragment {
     }
 
     private void fillSpinner(List<Country> countryList){
+        ArrayList<String> spinnerArray =  new ArrayList<>();
         if(countryList != null) {
             for (Country c : countryList) {
                 spinnerArray.add(c.getISOCode() + " - " + c.getTitle());
             }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            sItems.setAdapter(adapter);
+
+            SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this.getContext(), R.layout.country_spinner_layout,  spinnerArray);
+            sItems.setAdapter(spinnerAdapter);
         }
     }
 }

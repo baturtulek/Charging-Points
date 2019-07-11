@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">ElectricChargingStations</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">Charging Stations</string>
     <string name="title_discover">Discover</string>
     <string name="title_map">Map</string>
     <string name="title_options">Options</string>
