@@ -2,118 +2,65 @@ package com.example.electircalchargestations.Model;
 
 public class OperatorInfo {
 
-    private String WebsiteURL;
-    private String Comments = null;
-    private String PhonePrimaryContact = null;
-    private String PhoneSecondaryContact = null;
+    private String  WebsiteURL;
+    private String  Comments;
     private boolean IsPrivateIndividual;
-    private String AddressInfo = null;
-    private String BookingURL = null;
-    private String ContactEmail = null;
-    private String FaultReportEmail = null;
-    private boolean IsRestrictedEdit;
-    private float ID;
-    private String Title;
-
-
-    // Getter Methods
+    private String  ContactEmail;
+    private Integer ID;
+    private String  Title;
+    //private String PhonePrimaryContact;       //Most of the time Null.
+    //private String PhoneSecondaryContact;     //Most of the time Null.
+    //private String AddressInfo;               //Most of the time Null.
+    //private String BookingURL;                //Most of the time Null.
+    //private String FaultReportEmail;          //Most of the time Null.
+    //private Boolean IsRestrictedEdit;         // ?
 
     public String getWebsiteURL() {
         return WebsiteURL;
+    }
+
+    public void setWebsiteURL(String websiteURL) {
+        WebsiteURL = websiteURL;
     }
 
     public String getComments() {
         return Comments;
     }
 
-    public String getPhonePrimaryContact() {
-        return PhonePrimaryContact;
+    public void setComments(String comments) {
+        Comments = comments;
     }
 
-    public String getPhoneSecondaryContact() {
-        return PhoneSecondaryContact;
-    }
-
-    public boolean getIsPrivateIndividual() {
+    public boolean isPrivateIndividual() {
         return IsPrivateIndividual;
     }
 
-    public String getAddressInfo() {
-        return AddressInfo;
-    }
-
-    public String getBookingURL() {
-        return BookingURL;
+    public void setPrivateIndividual(boolean privateIndividual) {
+        IsPrivateIndividual = privateIndividual;
     }
 
     public String getContactEmail() {
         return ContactEmail;
     }
 
-    public String getFaultReportEmail() {
-        return FaultReportEmail;
+    public void setContactEmail(String contactEmail) {
+        ContactEmail = contactEmail;
     }
 
-    public boolean getIsRestrictedEdit() {
-        return IsRestrictedEdit;
-    }
-
-    public float getID() {
+    public Integer getID() {
         return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 
     public String getTitle() {
         return Title;
     }
 
-    // Setter Methods
-
-    public void setWebsiteURL(String WebsiteURL) {
-        this.WebsiteURL = WebsiteURL;
-    }
-
-    public void setComments(String Comments) {
-        this.Comments = Comments;
-    }
-
-    public void setPhonePrimaryContact(String PhonePrimaryContact) {
-        this.PhonePrimaryContact = PhonePrimaryContact;
-    }
-
-    public void setPhoneSecondaryContact(String PhoneSecondaryContact) {
-        this.PhoneSecondaryContact = PhoneSecondaryContact;
-    }
-
-    public void setIsPrivateIndividual(boolean IsPrivateIndividual) {
-        this.IsPrivateIndividual = IsPrivateIndividual;
-    }
-
-    public void setAddressInfo(String AddressInfo) {
-        this.AddressInfo = AddressInfo;
-    }
-
-    public void setBookingURL(String BookingURL) {
-        this.BookingURL = BookingURL;
-    }
-
-    public void setContactEmail(String ContactEmail) {
-        this.ContactEmail = ContactEmail;
-    }
-
-    public void setFaultReportEmail(String FaultReportEmail) {
-        this.FaultReportEmail = FaultReportEmail;
-    }
-
-    public void setIsRestrictedEdit(boolean IsRestrictedEdit) {
-        this.IsRestrictedEdit = IsRestrictedEdit;
-    }
-
-    public void setID(float ID) {
-        this.ID = ID;
-    }
-
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setTitle(String title) {
+        Title = title;
     }
 
     @Override
@@ -121,14 +68,14 @@ public class OperatorInfo {
         return "OperatorInfo{" +
                 "WebsiteURL='" + WebsiteURL + '\'' +
                 ", Comments='" + Comments + '\'' +
-                ", PhonePrimaryContact='" + PhonePrimaryContact + '\'' +
-                ", PhoneSecondaryContact='" + PhoneSecondaryContact + '\'' +
+                //", PhonePrimaryContact='" + PhonePrimaryContact + '\'' +
+                //", PhoneSecondaryContact='" + PhoneSecondaryContact + '\'' +
                 ", IsPrivateIndividual=" + IsPrivateIndividual +
-                ", AddressInfo='" + AddressInfo + '\'' +
-                ", BookingURL='" + BookingURL + '\'' +
+                //", AddressInfo='" + AddressInfo + '\'' +
+                //", BookingURL='" + BookingURL + '\'' +
                 ", ContactEmail='" + ContactEmail + '\'' +
-                ", FaultReportEmail='" + FaultReportEmail + '\'' +
-                ", IsRestrictedEdit=" + IsRestrictedEdit +
+                //", FaultReportEmail='" + FaultReportEmail + '\'' +
+                //", IsRestrictedEdit=" + IsRestrictedEdit +
                 ", ID=" + ID +
                 ", Title='" + Title + '\'' +
                 '}';

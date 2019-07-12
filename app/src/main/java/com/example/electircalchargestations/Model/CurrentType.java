@@ -2,9 +2,9 @@ package com.example.electircalchargestations.Model;
 
 public class CurrentType {
 
-    private String Description;
+    private String  Description;
     private Integer ID;
-    private String Title;
+    private String  Title;
 
     public String getDescription() { return Description; }
 

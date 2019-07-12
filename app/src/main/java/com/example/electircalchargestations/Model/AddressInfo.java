@@ -2,165 +2,151 @@ package com.example.electircalchargestations.Model;
 
 public class AddressInfo {
 
-    private float ID;
-    private String Title;
-    private String AddressLine1;
-    private String AddressLine2 = null;
-    private String Town;
-    private String StateOrProvince = null;
-    private String Postcode = null;
-    private float CountryID;
+    private Integer ID;
+    private String  Title;
+    private String  AddressLine1;
+    private String  AddressLine2;
+    private String  Town;
+    private String  StateOrProvince;
+    private String  Postcode;
+    private Integer CountryID;
     private Country Country;
-    private float Latitude;
-    private float Longitude;
-    private String ContactTelephone1 = null;
-    private String ContactTelephone2 = null;
-    private String ContactEmail = null;
-    private String AccessComments;
-    private String RelatedURL = null;
-    private String Distance = null;
-    private float DistanceUnit;
+    private Float   Latitude;
+    private Float   Longitude;
+    private String  ContactTelephone1;
+    private String  ContactTelephone2;
+    private String  ContactEmail;
+    private String  AccessComments;
+    private String  RelatedURL;
+    //private String Distance;
+    //private Integer DistanceUnit;
 
-    public float getID() {
+    public Integer getID() {
         return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 
     public String getTitle() {
         return Title;
     }
 
+    public void setTitle(String title) {
+        Title = title;
+    }
+
     public String getAddressLine1() {
         return AddressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        AddressLine1 = addressLine1;
     }
 
     public String getAddressLine2() {
         return AddressLine2;
     }
 
+    public void setAddressLine2(String addressLine2) {
+        AddressLine2 = addressLine2;
+    }
+
     public String getTown() {
         return Town;
+    }
+
+    public void setTown(String town) {
+        Town = town;
     }
 
     public String getStateOrProvince() {
         return StateOrProvince;
     }
 
+    public void setStateOrProvince(String stateOrProvince) {
+        StateOrProvince = stateOrProvince;
+    }
+
     public String getPostcode() {
         return Postcode;
     }
 
-    public float getCountryID() {
+    public void setPostcode(String postcode) {
+        Postcode = postcode;
+    }
+
+    public Integer getCountryID() {
         return CountryID;
     }
 
-    public Country getCountry() {
+    public void setCountryID(Integer countryID) {
+        CountryID = countryID;
+    }
+
+    public com.example.electircalchargestations.Model.Country getCountry() {
         return Country;
     }
 
-    public float getLatitude() {
+    public void setCountry(com.example.electircalchargestations.Model.Country country) {
+        Country = country;
+    }
+
+    public Float getLatitude() {
         return Latitude;
     }
 
-    public float getLongitude() {
+    public void setLatitude(Float latitude) {
+        Latitude = latitude;
+    }
+
+    public Float getLongitude() {
         return Longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        Longitude = longitude;
     }
 
     public String getContactTelephone1() {
         return ContactTelephone1;
     }
 
+    public void setContactTelephone1(String contactTelephone1) {
+        ContactTelephone1 = contactTelephone1;
+    }
+
     public String getContactTelephone2() {
         return ContactTelephone2;
+    }
+
+    public void setContactTelephone2(String contactTelephone2) {
+        ContactTelephone2 = contactTelephone2;
     }
 
     public String getContactEmail() {
         return ContactEmail;
     }
 
+    public void setContactEmail(String contactEmail) {
+        ContactEmail = contactEmail;
+    }
+
     public String getAccessComments() {
         return AccessComments;
+    }
+
+    public void setAccessComments(String accessComments) {
+        AccessComments = accessComments;
     }
 
     public String getRelatedURL() {
         return RelatedURL;
     }
 
-    public String getDistance() {
-        return Distance;
-    }
-
-    public float getDistanceUnit() {
-        return DistanceUnit;
-    }
-
-    public void setID(float ID) {
-        this.ID = ID;
-    }
-
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
-
-    public void setAddressLine1(String AddressLine1) {
-        this.AddressLine1 = AddressLine1;
-    }
-
-    public void setAddressLine2(String AddressLine2) {
-        this.AddressLine2 = AddressLine2;
-    }
-
-    public void setTown(String Town) {
-        this.Town = Town;
-    }
-
-    public void setStateOrProvince(String StateOrProvince) { this.StateOrProvince = StateOrProvince; }
-
-    public void setPostcode(String Postcode) {
-        this.Postcode = Postcode;
-    }
-
-    public void setCountryID(float CountryID) {
-        this.CountryID = CountryID;
-    }
-
-    public void setCountry(Country CountryObject) {
-        this.Country = CountryObject;
-    }
-
-    public void setLatitude(float Latitude) {
-        this.Latitude = Latitude;
-    }
-
-    public void setLongitude(float Longitude) {
-        this.Longitude = Longitude;
-    }
-
-    public void setContactTelephone1(String ContactTelephone1) {
-        this.ContactTelephone1 = ContactTelephone1;
-    }
-
-    public void setContactTelephone2(String ContactTelephone2) {
-        this.ContactTelephone2 = ContactTelephone2;
-    }
-
-    public void setContactEmail(String ContactEmail) {
-        this.ContactEmail = ContactEmail;
-    }
-
-    public void setAccessComments(String AccessComments) {
-        this.AccessComments = AccessComments;
-    }
-
-    public void setRelatedURL(String RelatedURL) {
-        this.RelatedURL = RelatedURL;
-    }
-
-    public void setDistance(String Distance) {
-        this.Distance = Distance;
-    }
-
-    public void setDistanceUnit(float DistanceUnit) {
-        this.DistanceUnit = DistanceUnit;
+    public void setRelatedURL(String relatedURL) {
+        RelatedURL = relatedURL;
     }
 
     @Override
@@ -182,8 +168,8 @@ public class AddressInfo {
                 ", ContactEmail='" + ContactEmail + '\'' +
                 ", AccessComments='" + AccessComments + '\'' +
                 ", RelatedURL='" + RelatedURL + '\'' +
-                ", Distance='" + Distance + '\'' +
-                ", DistanceUnit=" + DistanceUnit +
+                //", Distance='" + Distance + '\'' +
+                //", DistanceUnit=" + DistanceUnit +
                 '}';
     }
 }

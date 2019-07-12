@@ -1,238 +1,221 @@
 package com.example.electircalchargestations.Model;
 import java.util.ArrayList;
 
-
 public class ChargeStation {
-
     private float                   ID;
     private String                  UUID;
-    private String                  ParentChargePointID = null;
+    private Integer                 ParentChargePointID;
     private int                     DataProviderID;
     private DataProvider            DataProvider;
-    private String                  DataProvidersReference = null;
-    private float                   OperatorID;
+    private String                  DataProvidersReference;
+    private Integer                 OperatorID;
     private OperatorInfo            OperatorInfo;
-    private String                  OperatorsReference = null;
-    private float                   UsageTypeID;
+    //private Integer                  OperatorsReference;
+    private Integer                   UsageTypeID;
     private UsageType               UsageType;
-    private String                  UsageCost = null;
+    private String                  UsageCost;
     private AddressInfo             AddressInfo;
-    private float                   NumberOfPoints;
+    private Integer                 NumberOfPoints;
     private String                  GeneralComments;
-    private String                  DatePlanned = null;
-    private String                  DateLastConfirmed = null;
-    private float                   StatusTypeID;
+    //private String                  DatePlanned;
+    //private String                  DateLastConfirmed;
+    private Integer                 StatusTypeID;
     private StatusType              StatusType;
     private String                  DateLastStatusUpdate;
-    private float                   DataQualityLevel;
+    private Integer                 DataQualityLevel;
     private String                  DateCreated;
-    private float                   SubmissionStatusTypeID;
-    //private SubmissionStatus        SubmissionStatus;
-    private String                  UserComments = null;
-    private String                  PercentageSimilarity = null;
-    private ArrayList<Connection>   Connections = new ArrayList();
-    private ArrayList<MediaItem>    MediaItems  = new ArrayList();
-    private String                  MetadataValues = null;
+    private ArrayList<UserComment>  UserComments    = new ArrayList<>();
+    //private String                  PercentageSimilarity;
+    private ArrayList<Connection>   Connections     = new ArrayList();
+    private ArrayList<MediaItem>    MediaItems      = new ArrayList();
+    //private String                  MetadataValues
     private boolean                 IsRecentlyVerified;
-    private String                  DateLastVerified;
+    //private String                  DateLastVerified;
+
 
     public float getID() {
         return ID;
-    }
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    public String getParentChargePointID() {
-        return ParentChargePointID;
-    }
-
-    public float getDataProviderID() {
-        return DataProviderID;
-    }
-
-    public DataProvider getDataProvider() {
-        return DataProvider;
-    }
-
-    public String getDataProvidersReference() {
-        return DataProvidersReference;
-    }
-
-    public float getOperatorID() {
-        return OperatorID;
-    }
-
-    public OperatorInfo getOperatorInfo() {
-        return OperatorInfo;
-    }
-
-    public String getOperatorsReference() {
-        return OperatorsReference;
-    }
-
-    public float getUsageTypeID() {
-        return UsageTypeID;
-    }
-
-    public UsageType getUsageType() {
-        return UsageType;
-    }
-
-    public String getUsageCost() {
-        return UsageCost;
-    }
-
-    public AddressInfo getAddressInfo() {
-        return AddressInfo;
-    }
-
-    public float getNumberOfPoints() {
-        return NumberOfPoints;
-    }
-
-    public String getGeneralComments() {
-        return GeneralComments;
-    }
-
-    public String getDatePlanned() {
-        return DatePlanned;
-    }
-
-    public String getDateLastConfirmed() {
-        return DateLastConfirmed;
-    }
-
-    public float getStatusTypeID() {
-        return StatusTypeID;
-    }
-
-    public StatusType getStatusType() {
-        return StatusType;
-    }
-
-    public String getDateLastStatusUpdate() {
-        return DateLastStatusUpdate;
-    }
-
-    public float getDataQualityLevel() {
-        return DataQualityLevel;
-    }
-
-    public String getDateCreated() {
-        return DateCreated;
-    }
-
-    public float getSubmissionStatusTypeID() {
-        return SubmissionStatusTypeID;
-    }
-
-    //public SubmissionStatus getSubmissionStatus() {return SubmissionStatus;}
-
-    public String getUserComments() {
-        return UserComments;
-    }
-
-    public String getPercentageSimilarity() {
-        return PercentageSimilarity;
-    }
-
-    public String getMetadataValues() {
-        return MetadataValues;
-    }
-
-    public boolean getIsRecentlyVerified() {
-        return IsRecentlyVerified;
-    }
-
-    public String getDateLastVerified() {
-        return DateLastVerified;
     }
 
     public void setID(float ID) {
         this.ID = ID;
     }
 
+    public String getUUID() {
+        return UUID;
+    }
+
     public void setUUID(String UUID) {
         this.UUID = UUID;
     }
 
-    public void setParentChargePointID(String ParentChargePointID) { this.ParentChargePointID = ParentChargePointID; }
-
-    public void setDataProviderID(int DataProviderID) {
-        this.DataProviderID = DataProviderID;
+    public Integer getParentChargePointID() {
+        return ParentChargePointID;
     }
 
-    public void setDataProvider(DataProvider DataProviderObject) { this.DataProvider = DataProviderObject; }
-
-    public void setDataProvidersReference(String DataProvidersReference) { this.DataProvidersReference = DataProvidersReference; }
-
-    public void setOperatorID(float OperatorID) {
-        this.OperatorID = OperatorID;
+    public void setParentChargePointID(Integer parentChargePointID) {
+        ParentChargePointID = parentChargePointID;
     }
 
-    public void setOperatorInfo(OperatorInfo OperatorInfoObject) { this.OperatorInfo = OperatorInfoObject; }
-
-    public void setOperatorsReference(String OperatorsReference) { this.OperatorsReference = OperatorsReference; }
-
-    public void setUsageTypeID(float UsageTypeID) {
-        this.UsageTypeID = UsageTypeID;
+    public int getDataProviderID() {
+        return DataProviderID;
     }
 
-    public void setUsageType(UsageType UsageTypeObject) {
-        this.UsageType = UsageTypeObject;
+    public void setDataProviderID(int dataProviderID) {
+        DataProviderID = dataProviderID;
     }
 
-    public void setUsageCost(String UsageCost) {
-        this.UsageCost = UsageCost;
+    public com.example.electircalchargestations.Model.DataProvider getDataProvider() {
+        return DataProvider;
     }
 
-    public void setAddressInfo(AddressInfo AddressInfoObject) { this.AddressInfo = AddressInfoObject; }
-
-    public void setNumberOfPoints(float NumberOfPoints) {
-        this.NumberOfPoints = NumberOfPoints;
+    public void setDataProvider(com.example.electircalchargestations.Model.DataProvider dataProvider) {
+        DataProvider = dataProvider;
     }
 
-    public void setGeneralComments(String GeneralComments) { this.GeneralComments = GeneralComments; }
-
-    public void setDatePlanned(String DatePlanned) {
-        this.DatePlanned = DatePlanned;
+    public String getDataProvidersReference() {
+        return DataProvidersReference;
     }
 
-    public void setDateLastConfirmed(String DateLastConfirmed) { this.DateLastConfirmed = DateLastConfirmed; }
-
-    public void setStatusTypeID(float StatusTypeID) {
-        this.StatusTypeID = StatusTypeID;
+    public void setDataProvidersReference(String dataProvidersReference) {
+        DataProvidersReference = dataProvidersReference;
     }
 
-    public void setStatusType(StatusType StatusTypeObject) { this.StatusType = StatusTypeObject; }
-
-    public void setDateLastStatusUpdate(String DateLastStatusUpdate) { this.DateLastStatusUpdate = DateLastStatusUpdate; }
-
-    public void setDataQualityLevel(float DataQualityLevel) { this.DataQualityLevel = DataQualityLevel; }
-
-    public void setDateCreated(String DateCreated) {
-        this.DateCreated = DateCreated;
+    public Integer getOperatorID() {
+        return OperatorID;
     }
 
-    public void setSubmissionStatusTypeID(float SubmissionStatusTypeID) { this.SubmissionStatusTypeID = SubmissionStatusTypeID; }
-
-    //public void setSubmissionStatus(SubmissionStatus SubmissionStatusObject) { this.SubmissionStatus = SubmissionStatusObject; }
-
-    public void setUserComments(String UserComments) {
-        this.UserComments = UserComments;
+    public void setOperatorID(Integer operatorID) {
+        OperatorID = operatorID;
     }
 
-    public void setPercentageSimilarity(String PercentageSimilarity) { this.PercentageSimilarity = PercentageSimilarity; }
-
-    public void setMetadataValues(String MetadataValues) {
-        this.MetadataValues = MetadataValues;
+    public com.example.electircalchargestations.Model.OperatorInfo getOperatorInfo() {
+        return OperatorInfo;
     }
 
-    public void setIsRecentlyVerified(boolean IsRecentlyVerified) { this.IsRecentlyVerified = IsRecentlyVerified; }
+    public void setOperatorInfo(com.example.electircalchargestations.Model.OperatorInfo operatorInfo) {
+        OperatorInfo = operatorInfo;
+    }
 
-    public void setDateLastVerified(String DateLastVerified) { this.DateLastVerified = DateLastVerified; }
+    public Integer getUsageTypeID() {
+        return UsageTypeID;
+    }
+
+    public void setUsageTypeID(Integer usageTypeID) {
+        UsageTypeID = usageTypeID;
+    }
+
+    public com.example.electircalchargestations.Model.UsageType getUsageType() {
+        return UsageType;
+    }
+
+    public void setUsageType(com.example.electircalchargestations.Model.UsageType usageType) {
+        UsageType = usageType;
+    }
+
+    public String getUsageCost() {
+        return UsageCost;
+    }
+
+    public void setUsageCost(String usageCost) {
+        UsageCost = usageCost;
+    }
+
+    public com.example.electircalchargestations.Model.AddressInfo getAddressInfo() {
+        return AddressInfo;
+    }
+
+    public void setAddressInfo(com.example.electircalchargestations.Model.AddressInfo addressInfo) {
+        AddressInfo = addressInfo;
+    }
+
+    public Integer getNumberOfPoints() {
+        return NumberOfPoints;
+    }
+
+    public void setNumberOfPoints(Integer numberOfPoints) {
+        NumberOfPoints = numberOfPoints;
+    }
+
+    public String getGeneralComments() {
+        return GeneralComments;
+    }
+
+    public void setGeneralComments(String generalComments) {
+        GeneralComments = generalComments;
+    }
+
+    public Integer getStatusTypeID() {
+        return StatusTypeID;
+    }
+
+    public void setStatusTypeID(Integer statusTypeID) {
+        StatusTypeID = statusTypeID;
+    }
+
+    public com.example.electircalchargestations.Model.StatusType getStatusType() {
+        return StatusType;
+    }
+
+    public void setStatusType(com.example.electircalchargestations.Model.StatusType statusType) {
+        StatusType = statusType;
+    }
+
+    public String getDateLastStatusUpdate() {
+        return DateLastStatusUpdate;
+    }
+
+    public void setDateLastStatusUpdate(String dateLastStatusUpdate) {
+        DateLastStatusUpdate = dateLastStatusUpdate;
+    }
+
+    public Integer getDataQualityLevel() {
+        return DataQualityLevel;
+    }
+
+    public void setDataQualityLevel(Integer dataQualityLevel) {
+        DataQualityLevel = dataQualityLevel;
+    }
+
+    public String getDateCreated() {
+        return DateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        DateCreated = dateCreated;
+    }
+
+    public ArrayList<Connection> getConnections() {
+        return Connections;
+    }
+
+    public void setConnections(ArrayList<Connection> connections) {
+        Connections = connections;
+    }
+
+    public ArrayList<MediaItem> getMediaItems() {
+        return MediaItems;
+    }
+
+    public void setMediaItems(ArrayList<MediaItem> mediaItems) {
+        MediaItems = mediaItems;
+    }
+
+    public boolean isRecentlyVerified() {
+        return IsRecentlyVerified;
+    }
+
+    public void setRecentlyVerified(boolean recentlyVerified) {
+        IsRecentlyVerified = recentlyVerified;
+    }
+
+    public ArrayList<UserComment> getUserComments() {
+        return UserComments;
+    }
+
+    public void setUserComments(ArrayList<UserComment> userComments) {
+        UserComments = userComments;
+    }
 
     @Override
     public String toString() {
@@ -245,29 +228,21 @@ public class ChargeStation {
                 ", DataProvidersReference='" + DataProvidersReference + '\'' +
                 ", OperatorID=" + OperatorID +
                 ", OperatorInfo=" + OperatorInfo +
-                ", OperatorsReference='" + OperatorsReference + '\'' +
                 ", UsageTypeID=" + UsageTypeID +
                 ", UsageType=" + UsageType +
                 ", UsageCost='" + UsageCost + '\'' +
                 ", AddressInfo=" + AddressInfo +
                 ", NumberOfPoints=" + NumberOfPoints +
                 ", GeneralComments='" + GeneralComments + '\'' +
-                ", DatePlanned='" + DatePlanned + '\'' +
-                ", DateLastConfirmed='" + DateLastConfirmed + '\'' +
                 ", StatusTypeID=" + StatusTypeID +
                 ", StatusType=" + StatusType +
                 ", DateLastStatusUpdate='" + DateLastStatusUpdate + '\'' +
                 ", DataQualityLevel=" + DataQualityLevel +
                 ", DateCreated='" + DateCreated + '\'' +
-                ", SubmissionStatusTypeID=" + SubmissionStatusTypeID +
                 //", SubmissionStatus=" + SubmissionStatus +
-                ", UserComments='" + UserComments + '\'' +
-                ", PercentageSimilarity='" + PercentageSimilarity + '\'' +
+                ", UserComment='" + UserComments + '\'' +
                 ", Connections=" + Connections +
                 ", MediaItems=" + MediaItems +
-                ", MetadataValues='" + MetadataValues + '\'' +
-                ", IsRecentlyVerified=" + IsRecentlyVerified +
-                ", DateLastVerified='" + DateLastVerified + '\'' +
-                '}';
+                ", IsRecentlyVerified=" + IsRecentlyVerified;
     }
 }

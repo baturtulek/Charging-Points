@@ -2,52 +2,40 @@ package com.example.electircalchargestations.Model;
 
 public class Connection {
 
-    private Integer ID;
-    private Integer ConnectionTypeID;
-    private ConnectionType ConnectionType;
-    private Object Reference;
-    private Integer StatusTypeID;
-    private StatusType StatusType;
-    private Integer LevelID;
-    private Level Level;
-    private Object Amps;
-    private Object Voltage;
-    private Double PowerKW;
-    private Integer CurrentTypeID;
-    private CurrentType CurrentType;
-    private Integer Quantity;
-    private String Comments;
+    private Integer         ID;
+    private Integer         ConnectionTypeID;
+    private ConnectionType  ConnectionType;
+    //private Object          Reference;        //Most of the time Null.
+    private Integer         StatusTypeID;
+    private StatusType      StatusType;
+    private Integer         LevelID;
+    private Level           Level;
+    private String          Amps;
+    private String          Voltage;
+    private String          PowerKW;
+    private Integer         CurrentTypeID;
+    private CurrentType     CurrentType;
+    private Integer         Quantity;
+    private String          Comments;
 
-    public Integer getID() {
-        return ID;
-    }
+    public Integer getID() { return ID; }
 
-    public void setID(Integer iD) {
-        this.ID = iD;
-    }
+    public void setID(Integer ID) { this.ID = ID; }
 
     public Integer getConnectionTypeID() {
         return ConnectionTypeID;
     }
 
     public void setConnectionTypeID(Integer connectionTypeID) {
-        this.ConnectionTypeID = connectionTypeID;
+        ConnectionTypeID = connectionTypeID;
     }
 
-    public ConnectionType getConnectionType() {
+    public com.example.electircalchargestations.Model.ConnectionType getConnectionType() {
         return ConnectionType;
     }
 
-    public void setConnectionType(ConnectionType connectionType) {
-        this.ConnectionType = connectionType;
-    }
-
-    public Object getReference() {
-        return Reference;
-    }
-
-    public void setReference(Object reference) {
-        this.Reference = reference;
+    public void setConnectionType(com.example.electircalchargestations.Model.ConnectionType connectionType) {
+        ConnectionType = connectionType;
     }
 
     public Integer getStatusTypeID() {
@@ -55,15 +43,15 @@ public class Connection {
     }
 
     public void setStatusTypeID(Integer statusTypeID) {
-        this.StatusTypeID = statusTypeID;
+        StatusTypeID = statusTypeID;
     }
 
-    public StatusType getStatusType() {
+    public com.example.electircalchargestations.Model.StatusType getStatusType() {
         return StatusType;
     }
 
-    public void setStatusType(StatusType statusType) {
-        this.StatusType = statusType;
+    public void setStatusType(com.example.electircalchargestations.Model.StatusType statusType) {
+        StatusType = statusType;
     }
 
     public Integer getLevelID() {
@@ -71,39 +59,39 @@ public class Connection {
     }
 
     public void setLevelID(Integer levelID) {
-        this.LevelID = levelID;
+        LevelID = levelID;
     }
 
-    public Level getLevel() {
+    public com.example.electircalchargestations.Model.Level getLevel() {
         return Level;
     }
 
-    public void setLevel(Level level) {
-        this.Level = level;
+    public void setLevel(com.example.electircalchargestations.Model.Level level) {
+        Level = level;
     }
 
-    public Object getAmps() {
+    public String getAmps() {
         return Amps;
     }
 
-    public void setAmps(Object amps) {
-        this.Amps = amps;
+    public void setAmps(String amps) {
+        Amps = amps;
     }
 
-    public Object getVoltage() {
+    public String getVoltage() {
         return Voltage;
     }
 
-    public void setVoltage(Object voltage) {
-        this.Voltage = voltage;
+    public void setVoltage(String voltage) {
+        Voltage = voltage;
     }
 
-    public Double getPowerKW() {
+    public String getPowerKW() {
         return PowerKW;
     }
 
-    public void setPowerKW(Double powerKW) {
-        this.PowerKW = powerKW;
+    public void setPowerKW(String powerKW) {
+        PowerKW = powerKW;
     }
 
     public Integer getCurrentTypeID() {
@@ -111,15 +99,15 @@ public class Connection {
     }
 
     public void setCurrentTypeID(Integer currentTypeID) {
-        this.CurrentTypeID = currentTypeID;
+        CurrentTypeID = currentTypeID;
     }
 
-    public CurrentType getCurrentType() {
+    public com.example.electircalchargestations.Model.CurrentType getCurrentType() {
         return CurrentType;
     }
 
-    public void setCurrentType(CurrentType currentType) {
-        this.CurrentType = currentType;
+    public void setCurrentType(com.example.electircalchargestations.Model.CurrentType currentType) {
+        CurrentType = currentType;
     }
 
     public Integer getQuantity() {
@@ -127,7 +115,7 @@ public class Connection {
     }
 
     public void setQuantity(Integer quantity) {
-        this.Quantity = quantity;
+        Quantity = quantity;
     }
 
     public String getComments() {
@@ -135,27 +123,8 @@ public class Connection {
     }
 
     public void setComments(String comments) {
-        this.Comments = comments;
+        Comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Connection{" +
-                "iD=" + ID +
-                ", connectionTypeID=" + ConnectionTypeID +
-                ", connectionType=" + ConnectionType.toString() +
-                ", reference=" + Reference +
-                ", statusTypeID=" + StatusTypeID +
-                ", statusType=" + StatusType.toString() +
-                ", levelID=" + LevelID +
-                ", level=" + Level.toString() +
-                ", amps=" + Amps +
-                ", voltage=" + Voltage +
-                ", powerKW=" + PowerKW +
-                ", currentTypeID=" + CurrentTypeID +
-                ", currentType=" + CurrentType.toString() +
-                ", quantity=" + Quantity +
-                ", comments=" + Comments +
-                '}';
-    }
+
 }

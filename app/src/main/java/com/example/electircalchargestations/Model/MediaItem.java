@@ -1,18 +1,18 @@
 package com.example.electircalchargestations.Model;
 
 public class MediaItem {
-    private int ID;
-    private int ChargePointID;
-    private String ItemURL;
-    private String ItemThumbnailURL;
-    private String Comment;
+    private int     ID;
+    private int     ChargePointID;
+    private String  ItemURL;
+    private String  ItemThumbnailURL;
+    private String  Comment;
     private boolean IsEnabled;
     private boolean IsVideo;
-    private boolean IsFeaturedItem;
-    private boolean IsExternalResource;
-    private Object MetadataValue;
+    private String  DateCreated;
+    //private boolean IsFeaturedItem;
+    //private boolean IsExternalResource;
+    //private Object MetadataValue;
     //private User User;
-    private String DateCreated;
 
     public Integer getID() {
         return ID;
@@ -66,32 +66,6 @@ public class MediaItem {
         this.IsVideo = isVideo;
     }
 
-    public Boolean getIsFeaturedItem() {
-        return IsFeaturedItem;
-    }
-
-    public void setIsFeaturedItem(Boolean isFeaturedItem) {
-        this.IsFeaturedItem = isFeaturedItem;
-    }
-
-    public Boolean getIsExternalResource() {
-        return IsExternalResource;
-    }
-
-    public void setIsExternalResource(Boolean isExternalResource) { this.IsExternalResource = isExternalResource; }
-
-    public Object getMetadataValue() {
-        return MetadataValue;
-    }
-
-    public void setMetadataValue(Object metadataValue) {
-        this.MetadataValue = metadataValue;
-    }
-
-    //public User getUser() { return User; }
-
-    //public void setUser(User user) {this.User = user;}
-
     public String getDateCreated() {
         return DateCreated;
     }
@@ -110,9 +84,9 @@ public class MediaItem {
                 ", comment='" + Comment + '\'' +
                 ", isEnabled=" + IsEnabled +
                 ", isVideo=" + IsVideo +
-                ", isFeaturedItem=" + IsFeaturedItem +
-                ", isExternalResource=" + IsExternalResource +
-                ", metadataValue=" + MetadataValue +
+                //", isFeaturedItem=" + IsFeaturedItem +
+                //", isExternalResource=" + IsExternalResource +
+                //", metadataValue=" + MetadataValue +
                 //", user=" + User.toString() +
                 ", dateCreated='" + DateCreated + '\'' +
                 '}';
