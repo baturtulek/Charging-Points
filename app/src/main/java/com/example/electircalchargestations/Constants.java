@@ -7,5 +7,6 @@ public class Constants {
     public static final String END_POINT_REFERENCE_DATA = "/v3/referencedata";
     public static final String MAX_RESULT               = "15";
     public static final String OUTPUT_FORMAT            = "json";
+    public static final String OPEN_DATA_LICENSE        = "true";
 
 }

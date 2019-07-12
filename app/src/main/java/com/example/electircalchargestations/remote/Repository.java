@@ -45,7 +45,6 @@ public class Repository {
         mediatorList.addSource(countryListFromDb, new Observer<List<Country>>() {
             @Override
             public void onChanged(@Nullable List<Country> countries) {
-                Log.d("dbList",countries.toString());
                 if(countries == null || countries.isEmpty()){
                     getReferenceDataFromApi();
                 }else{
@@ -57,7 +56,6 @@ public class Repository {
         return mediatorList;
     }
 
-
     private void getReferenceDataFromApi() {
         Call<ReferenceDataRequestBeans> call = webService.getReferenceData();
 
@@ -65,7 +63,6 @@ public class Repository {
             @Override
             public void onResponse(Call<ReferenceDataRequestBeans> call, Response<ReferenceDataRequestBeans> response) {
                 if(response.isSuccessful()){
-                    Log.d("APICALL",response.body().getCountryList().toString());
                     insertReferenceData(
                             response.body().getCountryList(),
                             response.body().getChargerTypeList(),
@@ -82,9 +79,10 @@ public class Repository {
 
         MutableLiveData<List<ChargeStation>> stationData    = new MutableLiveData<>();
         Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(
-                countryCode,
                 Constants.OUTPUT_FORMAT,
-                Constants.MAX_RESULT);
+                Constants.MAX_RESULT,
+                Constants.OPEN_DATA_LICENSE,
+                countryCode);
 
         call.enqueue(new Callback<List<ChargeStation>>() {
             @Override
@@ -94,7 +92,9 @@ public class Repository {
                 }
             }
             @Override
-            public void onFailure(Call<List<ChargeStation>> call, Throwable t) { }
+            public void onFailure(Call<List<ChargeStation>> call, Throwable t) {
+                Log.d("OnFailure",t.getMessage());
+            }
         });
         return stationData;
     }

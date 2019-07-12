@@ -13,7 +13,8 @@ public interface WebService {
     Call<ReferenceDataRequestBeans> getReferenceData();
 
     @GET(Constants.END_POINT)
-    Call<List<ChargeStation>> getChargeStationListByCountry(@Query("countrycode")   String countryCode,
-                                                            @Query("output")        String outputFormat,
-                                                            @Query("maxresults")    String returnResult);
+    Call<List<ChargeStation>> getChargeStationListByCountry(@Query("output")        String outputFormat,
+                                                            @Query("maxresults")    String returnResult,
+                                                            @Query("opendata")      String openLicensed,
+                                                            @Query("countrycode")   String countryCode);
 }
