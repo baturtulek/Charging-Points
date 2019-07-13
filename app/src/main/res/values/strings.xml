@@ -4,4 +4,9 @@
     <string name="title_map">Map</string>
     <string name="title_options">Options</string>
     <string name="title_activity_map_fragment">Map</string>
+    <string name="discover_fragment_recycler_connection">Connections</string>
+    <string name="discover_fragment_recycler_operational">Operational</string>
+    <string name="discover_fragment_recycler_reqMembership">Required Membership</string>
+    <string name="discover_fragment_recycler_location">Location</string>
+    <string name="discover_fragment_no_station">No Stations Found !</string>
 </resources>

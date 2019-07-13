@@ -7,7 +7,7 @@ public class StatusType {
     private int     ID;
     private String  Title;
 
-    public boolean getIsOperational() {
+    public Boolean getIsOperational() {
         return IsOperational;
     }
 

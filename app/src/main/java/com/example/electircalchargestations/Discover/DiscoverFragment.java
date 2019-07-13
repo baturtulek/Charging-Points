@@ -1,20 +1,17 @@
 package com.example.electircalchargestations.Discover;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,19 +20,18 @@ import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
 import com.example.electircalchargestations.RecyclerAdapter;
 import com.example.electircalchargestations.SpinnerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class DiscoverFragment extends Fragment {
 
-    private DiscoverViewModel           viewModel;
-    private ProgressBar                 progressBar;
-    private TextView                    noDataTextView;
-    private Spinner                     sItems;
-    private RecyclerView                mRecyclerView;
-    private RecyclerAdapter             adapter;
-    private RecyclerView.LayoutManager  layoutManager;
+    private DiscoverViewModel    viewModel;
+    private ProgressBar          progressBar;
+    private TextView             noDataTextView;
+    private Spinner              sItems;
+    private RecyclerView         mRecyclerView;
+    private RecyclerAdapter      adapter;
+    private LinearLayoutManager  layoutManager;
 
     @Nullable
     @Override
@@ -51,6 +47,10 @@ public class DiscoverFragment extends Fragment {
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                layoutManager.getOrientation());
+
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         Observer<List<Country>> countryObserver = new Observer<List<Country>>() {
             @Override
