@@ -2,7 +2,7 @@ package com.example.electircalchargestations.Main;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
@@ -10,14 +10,16 @@ import com.example.electircalchargestations.Map.MapFragment;
 import com.example.electircalchargestations.Options.OptionsFragment;
 import com.example.electircalchargestations.R;
 import com.example.electircalchargestations.Discover.DiscoverFragment;
+import com.example.electircalchargestations.ViewPagerAdapter;
 
 public class  MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    private FragmentManager mFragmentManager    = null;
-    private Fragment    activeFragment          = null,
-                        discoverFragment        = new DiscoverFragment(),
-                        mapFragment             = new MapFragment(),
-                        optionsFragment         = new OptionsFragment();
+    private Fragment    discoverFragment,
+                        mapFragment,
+                        optionsFragment;
+    private ViewPager   viewPager;
+    private MenuItem    prevMenuItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,31 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
 
         setContentView(R.layout.activity_main);
 
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(3);
+        setupViewPager(viewPager);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(this);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        initFragments();
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                } else {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
     }
 
     @Override
@@ -42,44 +63,27 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         switch (menuItem.getItemId())
         {
             case  R.id.navigation_discover  :
-                if (!(activeFragment instanceof DiscoverFragment)) {
-                    changeFragment(discoverFragment);
-                }
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.navigation_map        :
-                if (!(activeFragment instanceof MapFragment)) {
-                    changeFragment(mapFragment);
-                }
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.navigation_options    :
-                if (!(activeFragment instanceof OptionsFragment)) {
-                    changeFragment(optionsFragment);
-                }
+                viewPager.setCurrentItem(2);
                 break;
         }
         return true;
     }
 
-    private void initFragments(){
-        if (mFragmentManager == null && activeFragment == null) {
-            mFragmentManager    = getSupportFragmentManager();
-            activeFragment      = discoverFragment;
-
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, discoverFragment,  "1").commit();
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, mapFragment,       "2").hide(mapFragment).commit();
-            mFragmentManager.beginTransaction().add(R.id.fragment_container, optionsFragment,   "3").hide(optionsFragment).commit();
-        }
-    }
-
-    private void changeFragment(Fragment toShow) {
-        mFragmentManager.beginTransaction().hide(activeFragment).show(toShow).commit();
-        activeFragment = toShow;
-    }
-
-    private Fragment getCurrentFragment() {
-        Fragment currentFragment = getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_container);
-        return currentFragment;
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter    = new ViewPagerAdapter(getSupportFragmentManager());
+        discoverFragment            = new DiscoverFragment();
+        mapFragment                 = new MapFragment();
+        optionsFragment             = new OptionsFragment();
+        adapter.addFragment(discoverFragment);
+        adapter.addFragment(mapFragment);
+        adapter.addFragment(optionsFragment);
+        viewPager.setAdapter(adapter);
     }
 
 }

@@ -99,12 +99,6 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         return view;
     }
 
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
     private void fillSpinner(List<Country> countryList){
         ArrayList<String> spinnerArray =  new ArrayList<>();
         if(countryList != null) {
