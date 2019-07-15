@@ -1,5 +1,4 @@
 package com.example.electircalchargestations;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,17 +9,16 @@ import android.widget.TextView;
 import com.example.electircalchargestations.Model.AddressInfo;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Connection;
-
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
 
-    private Context mContext;
     private ArrayList<ChargeStation>  stationList;
+    private OnStationListener mOnStationListener;
 
-    public RecyclerAdapter(Context mContext, ArrayList<ChargeStation> mArrayList) {
-        this.mContext       = mContext;
-        this.stationList    = mArrayList;
+    public RecyclerAdapter(ArrayList<ChargeStation> mArrayList, OnStationListener onStationListener ) {
+        this.stationList        = mArrayList;
+        this.mOnStationListener = onStationListener;
     }
 
     @NonNull
@@ -29,7 +27,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         LayoutInflater mLayoutInflater  = LayoutInflater.from(parent.getContext());
         View itemView                   = mLayoutInflater.inflate(R.layout.recycler_item, parent, false);
-        ViewHolder mViewHolder          = new ViewHolder(itemView);
+        ViewHolder mViewHolder          = new ViewHolder(itemView, mOnStationListener );
         return mViewHolder;
     }
 
@@ -86,7 +84,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     }
                     if(i + 1 < connectionList.size()) { connections += "\n"; }
                 }
-
             }
 
             holder.addressTitle.setText(addressTitle);
@@ -102,20 +99,36 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return stationList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView addressTitle;
         TextView addressLine;
         TextView connections;
         CheckBox isOperational;
         CheckBox isMemberShipRequired;
 
-        public ViewHolder(View itemView) {
+        OnStationListener onStationListener;
+
+        public ViewHolder(View itemView, OnStationListener onStationListener) {
             super(itemView);
             addressTitle            = itemView.findViewById(R.id.addressTitle);
             addressLine             = itemView.findViewById(R.id.address);
             connections             = itemView.findViewById(R.id.connections);
             isOperational           = itemView.findViewById(R.id.isOperationalTb);
             isMemberShipRequired    = itemView.findViewById(R.id.isMemberShipTb);
+
+            this.onStationListener  = onStationListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+
+            onStationListener.onItemClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnStationListener {
+        void onItemClick(int position);
+
     }
 }
