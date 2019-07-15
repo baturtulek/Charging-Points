@@ -30,7 +30,8 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".Main.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
