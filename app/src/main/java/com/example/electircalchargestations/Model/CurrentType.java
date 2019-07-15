@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class CurrentType {
+public class CurrentType implements Serializable {
 
     private String  Description;
     private Integer ID;

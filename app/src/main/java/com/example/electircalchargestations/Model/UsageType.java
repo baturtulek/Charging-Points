@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class UsageType {
+public class UsageType implements Serializable {
 
     private Boolean IsPayAtLocation;
     private Boolean IsMembershipRequired;

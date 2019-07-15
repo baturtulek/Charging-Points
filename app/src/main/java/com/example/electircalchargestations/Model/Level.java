@@ -2,9 +2,10 @@ package com.example.electircalchargestations.Model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import java.io.Serializable;
 
 @Entity(tableName = "charger_type")
-public class Level {
+public class Level implements Serializable {
 
     @PrimaryKey
     @ColumnInfo(name = "charger_id")

@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class MediaItem {
+public class MediaItem implements Serializable {
     private int     ID;
     private int     ChargePointID;
     private String  ItemURL;

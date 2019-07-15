@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class UserComment {
+public class UserComment implements Serializable {
 
     private int     ID;
     private int     ChargePointID;

@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class OperatorInfo {
+public class OperatorInfo implements Serializable {
 
     private String  WebsiteURL;
     private String  Comments;

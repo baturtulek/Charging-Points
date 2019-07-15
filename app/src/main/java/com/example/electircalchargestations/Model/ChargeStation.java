@@ -1,7 +1,8 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ChargeStation {
+public class ChargeStation implements Serializable {
     private float                   ID;
     private String                  UUID;
     private Integer                 ParentChargePointID;

@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class AddressInfo {
+public class AddressInfo implements Serializable {
 
     private Integer ID;
     private String  Title;

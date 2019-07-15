@@ -1,6 +1,8 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class DataProvider {
+public class DataProvider implements Serializable {
+
     private String          WebsiteURL;
     private String          Comments;
     //DataProviderStatusType  DataProviderStatusType;

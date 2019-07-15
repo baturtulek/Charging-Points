@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class StatusType {
+public class StatusType implements Serializable {
 
     private Boolean IsOperational;
     private Boolean IsUserSelectable;

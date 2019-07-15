@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.Model;
+import java.io.Serializable;
 
-public class Connection {
+public class Connection implements Serializable {
 
     private Integer         ID;
     private Integer         ConnectionTypeID;
