@@ -10,10 +10,11 @@ public class MediaItem implements Serializable {
     private boolean IsEnabled;
     private boolean IsVideo;
     private String  DateCreated;
+    private User    User;
     //private boolean IsFeaturedItem;
     //private boolean IsExternalResource;
     //private Object MetadataValue;
-    //private User User;
+
 
     public Integer getID() {
         return ID;
@@ -73,6 +74,14 @@ public class MediaItem implements Serializable {
 
     public void setDateCreated(String dateCreated) {
         this.DateCreated = dateCreated;
+    }
+
+    public com.example.electircalchargestations.Model.User getUser() {
+        return User;
+    }
+
+    public void setUser(com.example.electircalchargestations.Model.User user) {
+        User = user;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater mLayoutInflater  = LayoutInflater.from(parent.getContext());
-        View itemView                   = mLayoutInflater.inflate(R.layout.recycler_item, parent, false);
+        View itemView                   = mLayoutInflater.inflate(R.layout.recycler_item_discover, parent, false);
         ViewHolder mViewHolder          = new ViewHolder(itemView, mOnStationListener );
         return mViewHolder;
     }

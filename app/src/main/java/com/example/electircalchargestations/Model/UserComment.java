@@ -11,8 +11,8 @@ public class UserComment implements Serializable {
     private short   Rating;
     private String  RelatedURL;
     private String  DateCreated;
-    //private User    User;
-    private int     CheckinStatusTypeID;
+    private User    User;
+    //private int     CheckinStatusTypeID;
 
     public int getID() { return ID; }
 
@@ -76,9 +76,11 @@ public class UserComment implements Serializable {
         DateCreated = dateCreated;
     }
 
-    public int getCheckinStatusTypeID() {
-        return CheckinStatusTypeID;
+    public User getUser() {
+        return User;
     }
 
-    public void setCheckinStatusTypeID(int checkinStatusTypeID) { CheckinStatusTypeID = checkinStatusTypeID; }
+    public void setUser(com.example.electircalchargestations.Model.User user) {
+        User = user;
+    }
 }

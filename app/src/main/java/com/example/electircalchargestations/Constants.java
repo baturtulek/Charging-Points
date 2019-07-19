@@ -8,5 +8,6 @@ public class Constants {
     public static final String MAX_RESULT               = "15";
     public static final String OUTPUT_FORMAT            = "json";
     public static final String OPEN_DATA_LICENSE        = "true";
+    public static final String PAGE_TITLE               = "FRAGMENT_PAGE_TITLE";
 
 }

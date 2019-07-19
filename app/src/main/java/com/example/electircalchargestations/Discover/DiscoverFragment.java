@@ -58,7 +58,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
             @Override
             public void onChanged(@Nullable List<Country> countries) {
                 fillSpinner(countries);
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         };
         viewModel.getCountryList().observe(this, countryObserver);
@@ -74,7 +74,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 if(stations.isEmpty()) {
                     noDataTextView.setVisibility(View.VISIBLE);
                 }
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         };
 
@@ -85,7 +85,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 adapter = new RecyclerAdapter(new ArrayList<>(), DiscoverFragment.this);
                 mRecyclerView.setAdapter(adapter);
 
-                noDataTextView.setVisibility(View.INVISIBLE);
+                noDataTextView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
                 String selectedItem = sItems.getSelectedItem().toString();
@@ -113,7 +113,6 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
 
     @Override
     public void onItemClick(int position) {
-
         Intent intent =  new Intent(this.getActivity(), StationDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(StationDetailActivity.KEY_DETAIL_ACTIVITY, new Gson().toJson(stationsList.get(position)));

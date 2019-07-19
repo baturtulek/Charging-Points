@@ -32,13 +32,12 @@
         <activity android:name=".Main.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
         <activity android:name=".StationDetail.StationDetailActivity"
             android:parentActivityName=".Main.MainActivity"
             android:screenOrientation="portrait"/>
