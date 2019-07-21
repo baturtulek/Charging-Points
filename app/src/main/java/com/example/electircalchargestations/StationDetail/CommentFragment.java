@@ -10,25 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
-import com.example.electircalchargestations.Model.UserComment;
 import com.example.electircalchargestations.R;
-import com.example.electircalchargestations.RecyclerAdapter;
 import com.google.gson.Gson;
-import java.util.ArrayList;
 
-public class CommentsFragment extends Fragment {
+public class CommentFragment extends Fragment {
 
     private ChargeStation           station;
     private RecyclerView            mRecyclerView;
     private RecyclerCommentsAdapter adapter;
     private LinearLayoutManager     layoutManager;
 
-    public static CommentsFragment getInstance(String pageTitle){
-        CommentsFragment commentsFragment = new CommentsFragment();
+    public static CommentFragment getInstance(String pageTitle){
+        CommentFragment commentFragment = new CommentFragment();
         Bundle args = new Bundle();
         args.putString(Constants.PAGE_TITLE, pageTitle);
-        commentsFragment.setArguments(args);
-        return commentsFragment;
+        commentFragment.setArguments(args);
+        return commentFragment;
     }
 
     @Nullable

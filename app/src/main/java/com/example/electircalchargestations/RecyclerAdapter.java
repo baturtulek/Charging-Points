@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
 
-    private ArrayList<ChargeStation>  stationList;
-    private OnStationListener mOnStationListener;
+    private ArrayList<ChargeStation>    stationList;
+    private OnStationListener           mOnStationListener;
 
     public RecyclerAdapter(ArrayList<ChargeStation> mArrayList, OnStationListener onStationListener ) {
         this.stationList        = mArrayList;
@@ -122,7 +122,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-
             onStationListener.onItemClick(getAdapterPosition());
         }
     }

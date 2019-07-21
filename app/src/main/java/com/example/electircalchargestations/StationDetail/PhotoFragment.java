@@ -13,19 +13,19 @@ import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.R;
 import com.google.gson.Gson;
 
-public class PhotosFragment extends Fragment {
+public class PhotoFragment extends Fragment {
 
     private ChargeStation           station;
     private RecyclerView            mRecyclerView;
     private RecyclerPhotosAdapter   adapter;
     private LinearLayoutManager     layoutManager;
 
-    public static PhotosFragment getInstance(String pageTitle){
-        PhotosFragment photosFragment = new PhotosFragment();
+    public static PhotoFragment getInstance(String pageTitle){
+        PhotoFragment photoFragment = new PhotoFragment();
         Bundle args = new Bundle();
         args.putString(Constants.PAGE_TITLE, pageTitle);
-        photosFragment.setArguments(args);
-        return photosFragment;
+        photoFragment.setArguments(args);
+        return photoFragment;
     }
 
     @Nullable

@@ -54,6 +54,12 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 layoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+        registerObservers();
+        return view;
+    }
+
+    private void registerObservers(){
+
         Observer<List<Country>> countryObserver = new Observer<List<Country>>() {
             @Override
             public void onChanged(@Nullable List<Country> countries) {
@@ -62,7 +68,6 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
             }
         };
         viewModel.getCountryList().observe(this, countryObserver);
-
 
         Observer<List<ChargeStation>> stationObserver = new Observer<List<ChargeStation>>() {
             @Override
@@ -77,7 +82,6 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 progressBar.setVisibility(View.GONE);
             }
         };
-
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,8 +99,6 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-
-        return view;
     }
 
     private void fillSpinner(List<Country> countryList){

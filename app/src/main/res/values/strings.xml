@@ -1,4 +1,5 @@
 <resources>
+    <string name="toolbar_text">Charging Points</string>
     <string name="app_name">Charging Stations</string>
     <string name="title_discover">Discover</string>
     <string name="title_map">Map</string>

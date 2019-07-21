@@ -6,12 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.electircalchargestations.Model.User;
 import com.example.electircalchargestations.Model.UserComment;
 import com.example.electircalchargestations.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class RecyclerCommentsAdapter extends RecyclerView.Adapter<RecyclerCommentsAdapter.ViewHolder>{
@@ -45,6 +43,7 @@ public class RecyclerCommentsAdapter extends RecyclerView.Adapter<RecyclerCommen
             String userProfileURL = user.getProfileImageURL();
             Picasso.get()
                     .load(userProfileURL)
+                    .error(R.drawable.ic_error_outline_black_24dp)
                     .into(holder.userPhoto);
         }
     }

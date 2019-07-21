@@ -1,19 +1,20 @@
 package com.example.electircalchargestations.StationDetail;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.electircalchargestations.Model.MediaItem;
 import com.example.electircalchargestations.Model.User;
 import com.example.electircalchargestations.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAdapter.ViewHolder>{
@@ -45,10 +46,12 @@ public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAd
 
             Picasso.get()
                     .load(user.getProfileImageURL())
+                    .error(R.drawable.ic_error_outline_black_24dp)
                     .into(holder.userPhoto);
 
             Picasso.get()
                     .load(mediaItem.getItemURL())
+                    .error(R.drawable.ic_error_outline_black_24dp)
                     .into(holder.mediaItem, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -59,7 +62,6 @@ public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAd
                         }
                     });
         }
-
     }
 
     @Override

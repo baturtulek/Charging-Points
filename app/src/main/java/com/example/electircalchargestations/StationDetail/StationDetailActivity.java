@@ -15,19 +15,22 @@ import com.google.gson.Gson;
 
 public class StationDetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
-    public  static final String     KEY_DETAIL_ACTIVITY = "com.example.chargingStations.DetailActivity";
-    private static final String[]   pageTitles          = {"Details", "Comments", "Photos"};
+    private final int DETAIL_FRAGMENT   = 0;
+    private final int COMMENT_FRAGMENT  = 1;
+    private final int PHOTO_FRAGMENT    = 2;
+    private final int DETAIL_ACTIVITY_FRAGMENT_COUNT = 3;
+    private static final String[] pageTitles          = {"DETAILS", "COMMENTS", "PHOTOS"};
+    public  static final String   KEY_DETAIL_ACTIVITY = "com.example.chargingStations.DetailActivity";
 
-    private TabLayout tabLayout;
     private ViewPager pager;
-
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_detail);
 
-        getSupportActionBar().setElevation(0f);
+        //getSupportActionBar().setElevation(0f);
 
         pager       = findViewById(R.id.view_pager);
         tabLayout   = findViewById(R.id.tab_layout);
@@ -36,13 +39,22 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
         setUpPager();
     }
 
-
     private void setUpPager(){
         CustomAdapter adapter = new CustomAdapter(getSupportFragmentManager());
+        pager.setOffscreenPageLimit(DETAIL_ACTIVITY_FRAGMENT_COUNT);
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
         tabLayout.addOnTabSelectedListener(this);
     }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) { pager.setCurrentItem(tab.getPosition()); }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) { }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) { }
 
     private ChargeStation getChargeStationData(){
         String jsonChargeStation    = "";
@@ -55,18 +67,6 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
         return new Gson().fromJson(jsonChargeStation, ChargeStation.class);
     }
 
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) { pager.setCurrentItem(tab.getPosition()); }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) { }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) { }
-
-
-
     public class CustomAdapter extends FragmentPagerAdapter{
 
         public CustomAdapter(FragmentManager fm) {
@@ -75,27 +75,19 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
 
         @Override
         public Fragment getItem(int position) {
+            Fragment fragment = null;
             switch (position){
-                case 0:
-                    Bundle bundle = new Bundle();
-                    bundle.putString("params", new Gson().toJson(getChargeStationData()));
-                    DetailFragment detailFragment = DetailFragment.getInstance(pageTitles[position]);
-                    detailFragment.setArguments(bundle);
-                    return detailFragment;
-                case 1:
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putString("params", new Gson().toJson(getChargeStationData()));
-                    CommentsFragment commentsFragment = CommentsFragment.getInstance(pageTitles[position]);
-                    commentsFragment.setArguments(bundle1);
-                    return commentsFragment;
-                case 2:
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putString("params", new Gson().toJson(getChargeStationData()));
-                    PhotosFragment photosFragment = PhotosFragment.getInstance(pageTitles[position]);
-                    photosFragment.setArguments(bundle2);
-                    return photosFragment;
+                case DETAIL_FRAGMENT    :
+                    fragment = createFragmentInstance(position);
+                    break;
+                case COMMENT_FRAGMENT   :
+                    fragment = createFragmentInstance(position);
+                    break;
+                case PHOTO_FRAGMENT     :
+                    fragment = createFragmentInstance(position);
+                    break;
             }
-            return null;
+            return fragment;
         }
 
         @Override
@@ -108,8 +100,28 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
         public CharSequence getPageTitle(int position) {
             return pageTitles[position];
         }
-    }
 
+        private Fragment createFragmentInstance(int position){
+            Fragment fragment   = null;
+            Bundle bundle       = new Bundle();
+            bundle.putString("params", new Gson().toJson(getChargeStationData()));
+            switch (position){
+                case DETAIL_FRAGMENT    :
+                    fragment = DetailFragment.getInstance(pageTitles[position]);
+                    fragment.setArguments(bundle);
+                    break;
+                case COMMENT_FRAGMENT   :
+                    fragment = CommentFragment.getInstance(pageTitles[position]);
+                    fragment.setArguments(bundle);
+                    break;
+                case PHOTO_FRAGMENT     :
+                    fragment = PhotoFragment.getInstance(pageTitles[position]);
+                    fragment.setArguments(bundle);
+                    break;
+            }
+            return fragment;
+        }
+    }
 
 }
 
