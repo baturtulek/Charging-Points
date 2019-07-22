@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,14 +29,14 @@ import java.util.List;
 
 public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStationListener {
 
-    private DiscoverViewModel    viewModel;
-    private ProgressBar          progressBar;
-    private TextView             noDataTextView;
-    private Spinner              sItems;
-    private RecyclerView         mRecyclerView;
-    private RecyclerAdapter      adapter;
-    private LinearLayoutManager  layoutManager;
-    private ArrayList<ChargeStation> stationsList;
+    private DiscoverViewModel       viewModel;
+    private ProgressBar             progressBar;
+    private Spinner                 sItems;
+    private RecyclerView            mRecyclerView;
+    private RecyclerAdapter         adapter;
+    private LinearLayoutManager     layoutManager;
+    private CardView                noStationsFound;
+    private ArrayList<ChargeStation>stationsList;
 
     @Nullable
     @Override
@@ -45,7 +46,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         viewModel       = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         sItems          = view.findViewById(R.id.countrySpinner);
         progressBar     = view.findViewById(R.id.progressBar);
-        //noDataTextView  = view.findViewById(R.id.textView2);
+        noStationsFound = view.findViewById(R.id.noStationFound);
         mRecyclerView   = view.findViewById(R.id.recyclerView);
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -77,7 +78,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 mRecyclerView.setAdapter(adapter);
 
                 if(stations.isEmpty()) {
-                    //noDataTextView.setVisibility(View.VISIBLE);
+                    noStationsFound.setVisibility(View.VISIBLE);
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -89,7 +90,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 adapter = new RecyclerAdapter(new ArrayList<>(), DiscoverFragment.this);
                 mRecyclerView.setAdapter(adapter);
 
-                //noDataTextView.setVisibility(View.GONE);
+                noStationsFound.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
                 String selectedItem = sItems.getSelectedItem().toString();

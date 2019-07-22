@@ -1,5 +1,4 @@
 package com.example.electircalchargestations.Main;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
