@@ -45,7 +45,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         viewModel       = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         sItems          = view.findViewById(R.id.countrySpinner);
         progressBar     = view.findViewById(R.id.progressBar);
-        noDataTextView  = view.findViewById(R.id.textView2);
+        //noDataTextView  = view.findViewById(R.id.textView2);
         mRecyclerView   = view.findViewById(R.id.recyclerView);
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -77,7 +77,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 mRecyclerView.setAdapter(adapter);
 
                 if(stations.isEmpty()) {
-                    noDataTextView.setVisibility(View.VISIBLE);
+                    //noDataTextView.setVisibility(View.VISIBLE);
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -89,7 +89,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 adapter = new RecyclerAdapter(new ArrayList<>(), DiscoverFragment.this);
                 mRecyclerView.setAdapter(adapter);
 
-                noDataTextView.setVisibility(View.GONE);
+                //noDataTextView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
                 String selectedItem = sItems.getSelectedItem().toString();

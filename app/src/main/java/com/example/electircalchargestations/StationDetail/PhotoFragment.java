@@ -15,18 +15,9 @@ import com.google.gson.Gson;
 
 public class PhotoFragment extends Fragment {
 
-    private ChargeStation           station;
     private RecyclerView            mRecyclerView;
     private RecyclerPhotosAdapter   adapter;
     private LinearLayoutManager     layoutManager;
-
-    public static PhotoFragment getInstance(String pageTitle){
-        PhotoFragment photoFragment = new PhotoFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.PAGE_TITLE, pageTitle);
-        photoFragment.setArguments(args);
-        return photoFragment;
-    }
 
     @Nullable
     @Override
@@ -37,13 +28,26 @@ public class PhotoFragment extends Fragment {
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
 
+        adapter = new RecyclerPhotosAdapter(getChargeStationData().getMediaItems());
+        mRecyclerView.setAdapter(adapter);
+        return view;
+    }
+
+    public static PhotoFragment getInstance(String pageTitle){
+        PhotoFragment photoFragment = new PhotoFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.PAGE_TITLE, pageTitle);
+        photoFragment.setArguments(args);
+        return photoFragment;
+    }
+
+    private ChargeStation getChargeStationData(){
+        ChargeStation station = null;
         if (getArguments() != null) {
             String jsonChargeStation    = getArguments().getString("params");
             station                     = new Gson().fromJson(jsonChargeStation, ChargeStation.class);
         }
-
-        adapter = new RecyclerPhotosAdapter(station.getMediaItems());
-        mRecyclerView.setAdapter(adapter);
-        return view;
+        return station;
     }
+
 }

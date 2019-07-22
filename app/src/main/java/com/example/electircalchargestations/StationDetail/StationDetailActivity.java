@@ -1,6 +1,7 @@
 package com.example.electircalchargestations.StationDetail;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,34 +10,50 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.R;
 import com.google.gson.Gson;
 
 public class StationDetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
-    private final int DETAIL_FRAGMENT   = 0;
-    private final int COMMENT_FRAGMENT  = 1;
-    private final int PHOTO_FRAGMENT    = 2;
-    private final int DETAIL_ACTIVITY_FRAGMENT_COUNT = 3;
-    private static final String[] pageTitles          = {"DETAILS", "COMMENTS", "PHOTOS"};
-    public  static final String   KEY_DETAIL_ACTIVITY = "com.example.chargingStations.DetailActivity";
+    private final   int DETAIL_FRAGMENT                = 0;
+    private final   int COMMENT_FRAGMENT               = 1;
+    private final   int PHOTO_FRAGMENT                 = 2;
+    private final   int DETAIL_ACTIVITY_FRAGMENT_COUNT = 3;
+    private static  final String[] pageTitles          = {"DETAILS", "COMMENTS", "PHOTOS"};
+    public  static  final String   KEY_DETAIL_ACTIVITY = "com.example.chargingStations.DetailActivity";
 
-    private ViewPager pager;
-    private TabLayout tabLayout;
+    private ViewPager   pager;
+    private TabLayout   tabLayout;
+    private Toolbar     toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_detail);
 
-        //getSupportActionBar().setElevation(0f);
-
+        toolbar     = findViewById(R.id.detail_toolbar);
         pager       = findViewById(R.id.view_pager);
         tabLayout   = findViewById(R.id.tab_layout);
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#007EE0"));
-
+        setUpActivity();
         setUpPager();
+    }
+
+    private void setUpActivity(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorCreamWhite));
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     private void setUpPager(){
@@ -46,15 +63,6 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
         tabLayout.setupWithViewPager(pager);
         tabLayout.addOnTabSelectedListener(this);
     }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) { pager.setCurrentItem(tab.getPosition()); }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) { }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) { }
 
     private ChargeStation getChargeStationData(){
         String jsonChargeStation    = "";
@@ -66,6 +74,16 @@ public class StationDetailActivity extends AppCompatActivity implements TabLayou
         }
         return new Gson().fromJson(jsonChargeStation, ChargeStation.class);
     }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) { pager.setCurrentItem(tab.getPosition()); }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) { }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) { }
+
 
     public class CustomAdapter extends FragmentPagerAdapter{
 

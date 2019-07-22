@@ -19,11 +19,12 @@ import android.view.View;
 
 public class  MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    private final int DISCOVER_FRAGMENT = 0;
-    private final int MAP_FRAGMENT      = 1;
-    private final int OPTIONS_FRAGMENT  = 2;
-    private final int MAIN_ACTIVITY_FRAGMENT_COUNT = 3;
+    private final int DISCOVER_FRAGMENT             = 0;
+    private final int MAP_FRAGMENT                  = 1;
+    private final int OPTIONS_FRAGMENT              = 2;
+    private final int MAIN_ACTIVITY_FRAGMENT_COUNT  = 3;
 
+    private Toolbar                 toolbar;
     private MenuItem                prevMenuItem;
     private ViewPager               viewPager;
     private BottomNavigationView    bottomNavigationView;
@@ -31,25 +32,14 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            //window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-            window.setStatusBarColor(Color.WHITE);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
-
+        toolbar                 = findViewById(R.id.main_toolbar);
         viewPager               = findViewById(R.id.viewpager);
         bottomNavigationView    = findViewById(R.id.bottom_navigation);
 
         setUpViewPager();
+        setUpActivity();
     }
 
     @Override
@@ -58,15 +48,32 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         {
             case  R.id.navigation_discover  :
                 viewPager.setCurrentItem(DISCOVER_FRAGMENT);
+                toolbar.setVisibility(View.VISIBLE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 break;
             case R.id.navigation_map        :
                 viewPager.setCurrentItem(MAP_FRAGMENT);
+                toolbar.setVisibility(View.GONE);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 break;
             case R.id.navigation_options    :
                 viewPager.setCurrentItem(OPTIONS_FRAGMENT);
+                toolbar.setVisibility(View.VISIBLE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 break;
         }
         return true;
+    }
+
+    private void setUpActivity(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorCreamWhite));
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
     }
 
     private void setUpViewPager(){
@@ -82,6 +89,13 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
                 }
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+                if(position == MAP_FRAGMENT){
+                    toolbar.setVisibility(View.GONE);
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                }else{
+                    toolbar.setVisibility(View.VISIBLE);
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) { }

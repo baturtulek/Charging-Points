@@ -1,7 +1,6 @@
 package com.example.electircalchargestations.StationDetail;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import com.example.electircalchargestations.Model.User;
 import com.example.electircalchargestations.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAdapter.ViewHolder>{

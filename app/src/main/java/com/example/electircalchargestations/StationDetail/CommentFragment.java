@@ -15,18 +15,9 @@ import com.google.gson.Gson;
 
 public class CommentFragment extends Fragment {
 
-    private ChargeStation           station;
     private RecyclerView            mRecyclerView;
     private RecyclerCommentsAdapter adapter;
     private LinearLayoutManager     layoutManager;
-
-    public static CommentFragment getInstance(String pageTitle){
-        CommentFragment commentFragment = new CommentFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.PAGE_TITLE, pageTitle);
-        commentFragment.setArguments(args);
-        return commentFragment;
-    }
 
     @Nullable
     @Override
@@ -37,14 +28,26 @@ public class CommentFragment extends Fragment {
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
 
+        adapter = new RecyclerCommentsAdapter(getChargeStationData().getUserComments());
+        mRecyclerView.setAdapter(adapter);
+        return view;
+    }
+
+    public static CommentFragment getInstance(String pageTitle){
+        CommentFragment commentFragment = new CommentFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.PAGE_TITLE, pageTitle);
+        commentFragment.setArguments(args);
+        return commentFragment;
+    }
+
+    private ChargeStation getChargeStationData(){
+        ChargeStation station = null;
         if (getArguments() != null) {
             String jsonChargeStation    = getArguments().getString("params");
             station                     = new Gson().fromJson(jsonChargeStation, ChargeStation.class);
         }
-
-        adapter = new RecyclerCommentsAdapter(station.getUserComments());
-        mRecyclerView.setAdapter(adapter);
-        return view;
+        return station;
     }
 
 }
