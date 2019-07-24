@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
-        app:contentPadding="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:contentPadding="10dp"
+        app:contentPaddingLeft="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +90,9 @@
                     android:text="@string/discover_fragment_recycler_reqMembership" />
 
             </LinearLayout>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

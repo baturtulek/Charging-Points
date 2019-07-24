@@ -15,6 +15,15 @@
     <string name="station_detail_user_photo_description">User Profile Image</string>
     <string name="station_detail_media_photo_description">Media Item Image</string>
     <string name="station_detail_rating">Rating : </string>
-    <string name="no_comment">Unable to find any Comments !</string>
-    <string name="no_photo">Unable to find any Photos !</string>
+    <string name="no_comment">No Comments Found !</string>
+    <string name="no_photo">No Photos Found !</string>
+    <string name="station_detail_location_detail">Location Details</string>
+    <string name="station_detail_equipment">Equipment Details</string>
+    <string name="station_detail_usage_restrictions">Usage Restrictions</string>
+    <string name="station_detail_data_provider">Data Provider</string>
+    <string name="station_detail_operational_status">Operational Status</string>
+    <string name="station_detail_membership_required">Membership Required</string>
+    <string name="station_detail_access_key_required">Access Key Required</string>
+    <string name="station_detail_pay_at_location">Pat At Location</string>
+    <string name="station_detail_usage_type">Usage Type</string>
 </resources>

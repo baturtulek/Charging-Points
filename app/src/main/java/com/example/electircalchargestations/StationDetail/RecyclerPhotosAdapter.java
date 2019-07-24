@@ -39,7 +39,7 @@ public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAd
             User user           = mediaItem.getUser();
 
             holder.userName.setText(user.getUsername());
-            holder.dateCreated.setText(mediaItem.getDateCreated().substring(0,10));
+            holder.dateCreated.setText(mediaItem.getDateCreated().substring(0, 10));
 
             Picasso.get()
                     .load(user.getProfileImageURL())

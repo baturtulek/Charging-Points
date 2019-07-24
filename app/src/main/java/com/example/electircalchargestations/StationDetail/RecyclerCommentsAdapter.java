@@ -34,7 +34,7 @@ public class RecyclerCommentsAdapter extends RecyclerView.Adapter<RecyclerCommen
         if(!commentList.isEmpty()) {
             UserComment comment = commentList.get(i);
 
-            holder.dateCreated.setText(comment.getDateCreated().substring(0,10));
+            holder.dateCreated.setText(comment.getDateCreated().substring(0, 10));
             holder.userName.setText(comment.getUserName());
             holder.rating.setText(String.valueOf(comment.getRating()) + " / 5");
             holder.comment.setText(comment.getComment());

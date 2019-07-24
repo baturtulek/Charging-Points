@@ -27,7 +27,7 @@
             android:padding="5dp"
             android:text=" Charging Points "
             android:textColor="@color/colorPrimary"
-            android:textSize="23sp"
+            android:textSize="24sp"
             android:textStyle="bold|italic" />
 
     </android.support.v7.widget.Toolbar>
