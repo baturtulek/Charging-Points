@@ -18,15 +18,15 @@ import android.view.View;
 
 public class  MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    private final int DISCOVER_FRAGMENT             = 0;
-    private final int MAP_FRAGMENT                  = 1;
-    private final int OPTIONS_FRAGMENT              = 2;
-    private final int MAIN_ACTIVITY_FRAGMENT_COUNT  = 3;
+    public static final int DISCOVER_FRAGMENT             = 0;
+    public static final int MAP_FRAGMENT                  = 1;
+    public static final int OPTIONS_FRAGMENT              = 2;
+    public static final int MAIN_ACTIVITY_FRAGMENT_COUNT  = 3;
 
     private Toolbar                 toolbar;
     private MenuItem                prevMenuItem;
-    private ViewPager               viewPager;
     private BottomNavigationView    bottomNavigationView;
+    private static ViewPager        viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +110,10 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         pagerAdapter.addFragment(new MapFragment());
         pagerAdapter.addFragment(new OptionsFragment());
         return pagerAdapter;
+    }
+
+    public static void loadMapFragment(){
+        viewPager.setCurrentItem(MAP_FRAGMENT);
     }
 
 }

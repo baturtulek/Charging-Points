@@ -1,38 +1,26 @@
 package com.example.electircalchargestations.Map;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.electircalchargestations.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -41,11 +29,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
-   private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
-    private FusedLocationProviderClient fusedLocationClient;
-    private GoogleMap gMap;
-    private MapView mapview;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
 
+    private MapView mapview;
+    private FusedLocationProviderClient fusedLocationClient;
+    private static GoogleMap gMap;
 
     @Nullable
     @Override
@@ -71,6 +59,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         CameraPosition userLocation = CameraPosition.builder().target(new LatLng(38.73122,35.478729)).zoom(5).build();
         gMap.moveCamera(CameraUpdateFactory.newCameraPosition(userLocation));
 
+    }
+
+    public static void LoadPosition(float latitude, float longitude, String stationTitle, String addressInfo){
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 13.0f));
+
+        Marker stationMarker = gMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(latitude, longitude))
+                                        .title(stationTitle)
+                                        .snippet(addressInfo));
+        stationMarker.showInfoWindow();
     }
 
     private void fetchUserLocation(){

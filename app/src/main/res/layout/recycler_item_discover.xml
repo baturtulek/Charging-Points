@@ -13,11 +13,15 @@
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
         app:contentPadding="10dp"
-        app:contentPaddingLeft="20dp">
+        app:contentPaddingLeft="20dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="9dp"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:orientation="vertical">
@@ -26,8 +30,9 @@
                 android:id="@+id/addressTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
                 android:textSize="19sp"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/locationTv"
@@ -39,10 +44,17 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/address1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp" />
+                android:layout_marginTop="2dp"
+                android:paddingLeft="15dp" />
+
+            <TextView
+                android:id="@+id/address2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp" />
 
             <TextView
                 android:id="@+id/connectionsTv"
@@ -57,39 +69,9 @@
                 android:id="@+id/connections"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_marginTop="2dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/isOperationalTb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:buttonTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:scaleX="0.70"
-                    android:scaleY="0.70"
-                    android:text="@string/discover_fragment_recycler_operational"
-                    android:textAlignment="viewStart" />
-
-                <CheckBox
-                    android:id="@+id/isMemberShipTb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:buttonTint="@color/colorPrimary"
-                    android:checked="false"
-                    android:clickable="false"
-                    android:scaleX="0.70"
-                    android:scaleY="0.70"
-                    android:text="@string/discover_fragment_recycler_reqMembership" />
-
-            </LinearLayout>
+                android:lineSpacingExtra="4dp"
+                android:paddingLeft="15dp" />
 
         </LinearLayout>
 

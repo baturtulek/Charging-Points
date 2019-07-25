@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
@@ -50,6 +49,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         mRecyclerView   = view.findViewById(R.id.recyclerView);
         layoutManager   = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
+
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 layoutManager.getOrientation());
@@ -109,7 +109,7 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 spinnerArray.add(c.getISOCode() + " - " + c.getTitle());
             }
 
-            SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this.getContext(), R.layout.country_spinner_layout,  spinnerArray);
+            SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_country_layout,  spinnerArray);
             sItems.setAdapter(spinnerAdapter);
         }
     }

@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context=".Discover.DiscoverFragment">
 
-        <Spinner
-            android:id="@+id/countrySpinner"
-            android:layout_width="205dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
-            android:dropDownWidth="215dp"
-            android:spinnerMode="dropdown" />
+    <Spinner
+        android:id="@+id/countrySpinner"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:dropDownWidth="225dp"
+        android:spinnerMode="dropdown" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                     android:layout_width="280dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="140dp"
+                    android:layout_marginBottom="120dp"
                     android:visibility="gone"
                     app:cardCornerRadius="2dp"
                     app:cardElevation="2dp">
@@ -75,7 +75,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
 
             </FrameLayout>
 </LinearLayout>

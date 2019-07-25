@@ -2,18 +2,21 @@ package com.example.electircalchargestations.StationDetail;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import com.example.electircalchargestations.Constants;
+import com.example.electircalchargestations.Main.MainActivity;
+import com.example.electircalchargestations.Map.MapFragment;
 import com.example.electircalchargestations.Model.AddressInfo;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Connection;
 import com.example.electircalchargestations.Model.DataProvider;
-import com.example.electircalchargestations.Model.StatusType;
 import com.example.electircalchargestations.Model.UsageType;
 import com.example.electircalchargestations.R;
 import com.google.gson.Gson;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 
 public class DetailFragment extends Fragment {
 
+    private ChargeStation station;
     private TextView locationTitleTv;
     private TextView locationInfoTv;
     private TextView latitudeLongitudeTv;
@@ -33,8 +37,13 @@ public class DetailFragment extends Fragment {
     private TextView dataProviderTitleTv;
     private TextView dataProviderUrlTv;
     private TextView licenseTv;
-
-    private final String UNDEFINED_DATA = "<i>Undefined</i>";
+    private CheckBox membershipCb;
+    private CheckBox accessKeyCb;
+    private CheckBox payAtLocationCb;
+    private TextView telNo1;
+    private TextView mailAddress;
+    private TextView usageCost;
+    private FloatingActionButton actionButton;
 
     public static DetailFragment getInstance(String pageTitle) {
         Bundle args                     = new Bundle();
@@ -61,10 +70,41 @@ public class DetailFragment extends Fragment {
         dataProviderTitleTv = view.findViewById(R.id.dataProviderTitleTv);
         dataProviderUrlTv   = view.findViewById(R.id.dataProviderUrlTv);
         licenseTv           = view.findViewById(R.id.licenseTv);
+        membershipCb        = view.findViewById(R.id.membershipCb);
+        accessKeyCb         = view.findViewById(R.id.accessKeyCb);
+        payAtLocationCb     = view.findViewById(R.id.payAtLocationCb);
+        telNo1              = view.findViewById(R.id.telNo1);
+        mailAddress         = view.findViewById(R.id.mailAddress);
+        usageCost           = view.findViewById(R.id.usageCost);
+        actionButton        = view.findViewById(R.id.floatingActionButton);
+
+        station = getChargeStationData();
 
         fillData();
+
+        actionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String addressInfo = "";
+                if(station.getAddressInfo().getAddressLine1() != null){
+                    addressInfo += station.getAddressInfo().getAddressLine1();
+                }
+                if(station.getAddressInfo().getAddressLine2() != null){
+                    addressInfo += " " +station.getAddressInfo().getAddressLine2();
+                }
+
+                getActivity().onBackPressed();
+                MainActivity.loadMapFragment();
+                MapFragment.LoadPosition(station.getAddressInfo().getLatitude(),
+                        station.getAddressInfo().getLatitude(),
+                        station.getAddressInfo().getTitle(),
+                        addressInfo);
+            }
+        });
+
         return view;
     }
+
 
     private ChargeStation getChargeStationData() {
         ChargeStation station = null;
@@ -76,7 +116,6 @@ public class DetailFragment extends Fragment {
     }
 
     private void fillData() {
-        ChargeStation station = getChargeStationData();
 
         //Location
         if (station.getAddressInfo() != null) {
@@ -107,8 +146,16 @@ public class DetailFragment extends Fragment {
                 latitudeLongitudeTv.setText(addressInfo.getLatitude().toString());
             }
             if(addressInfo.getLongitude() != null){
-                latitudeLongitudeTv.append("     " + addressInfo.getLongitude());
+                latitudeLongitudeTv.append("   " + addressInfo.getLongitude());
             }
+
+            if(addressInfo.getContactTelephone1() != null && !addressInfo.getContactTelephone1().isEmpty()){
+                telNo1.setText(addressInfo.getContactTelephone1());
+            }
+            if(addressInfo.getContactEmail() != null && !addressInfo.getContactEmail().isEmpty()){
+                mailAddress.setText(addressInfo.getContactEmail());
+            }
+
         }
 
         //Connection
@@ -130,19 +177,11 @@ public class DetailFragment extends Fragment {
                 }
             }
             connectionsTv.setText(Html.fromHtml(connection));
-        }else{
-            connectionsTv.setText(Html.fromHtml(UNDEFINED_DATA));
         }
 
         //Status Type
-        if(station.getStatusType() != null){
-            StatusType statusType = station.getStatusType();
-
-            if (statusType.getTitle() != null) {
-                operationalStatusTv.setText(statusType.getTitle());
-            }else{
-                operationalStatusTv.setText(Html.fromHtml(UNDEFINED_DATA));
-            }
+        if(station.getStatusType() != null && station.getStatusType().getTitle() != null){
+            operationalStatusTv.setText(station.getStatusType().getTitle());
         }
 
         //Usage Type
@@ -151,32 +190,58 @@ public class DetailFragment extends Fragment {
 
             if (usageType.getTitle() != null) {
                 usageTypeTv.setText(usageType.getTitle());
-            }else{
-                usageTypeTv.setText(Html.fromHtml(UNDEFINED_DATA));
             }
 
             if (usageType.getMembershipRequired() != null) {
-                membershipTv.setText(usageType.getMembershipRequired().toString());
+                membershipCb.setChecked(usageType.getMembershipRequired());
+                if(usageType.getMembershipRequired()){
+                    membershipCb.setText("Required");
+                }else{
+                    membershipCb.setText("Not Required");
+                }
+                membershipTv.setVisibility(View.GONE);
             }else{
-                membershipTv.setText(Html.fromHtml(UNDEFINED_DATA));
+                membershipCb.setVisibility(View.GONE);
             }
 
+
             if (usageType.getAccessKeyRequired() != null) {
-                accessKeyTv.setText(usageType.getAccessKeyRequired().toString());
+                accessKeyCb.setChecked(usageType.getAccessKeyRequired());
+                if(usageType.getAccessKeyRequired()){
+                    accessKeyCb.setText("Required");
+                }else{
+                    accessKeyCb.setText("Not Required");
+                }
+                accessKeyTv.setVisibility(View.GONE);
             }else{
-                accessKeyTv.setText(Html.fromHtml(UNDEFINED_DATA));
+                accessKeyCb.setVisibility(View.GONE);
             }
 
             if (usageType.getPayAtLocation() != null) {
-                payAtLocationTv.setText(usageType.getPayAtLocation().toString());
+                payAtLocationCb.setChecked(usageType.getPayAtLocation());
+                if(usageType.getPayAtLocation()){
+                    payAtLocationCb.setText("Available");
+                }else{
+                    payAtLocationCb.setText("Not Available");
+                }
+                payAtLocationTv.setVisibility(View.GONE);
             }else{
-                payAtLocationTv.setText(Html.fromHtml(UNDEFINED_DATA));
+                payAtLocationCb.setVisibility(View.GONE);
             }
+        }else{
+            membershipCb.setVisibility(View.GONE);
+            accessKeyCb.setVisibility(View.GONE);
+            payAtLocationCb.setVisibility(View.GONE);
+        }
+
+        if(station.getUsageCost() != null){
+            usageCost.setText(station.getUsageCost());
         }
 
         //Data Provider
-        if (station.getDataProvider() != null && station.getDataProvider().getTitle() != null) {
+        if (station.getDataProvider() != null) {
             DataProvider dataProvider = station.getDataProvider();
+
             if(dataProvider.getTitle() != null){
                 dataProviderTitleTv.setText(dataProvider.getTitle());
             }
