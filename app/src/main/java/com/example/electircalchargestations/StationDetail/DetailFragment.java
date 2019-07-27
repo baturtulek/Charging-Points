@@ -79,9 +79,13 @@ public class DetailFragment extends Fragment {
         actionButton        = view.findViewById(R.id.floatingActionButton);
 
         station = getChargeStationData();
-
+        actionButtonListener();
         fillData();
 
+        return view;
+    }
+
+    private void actionButtonListener(){
         actionButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -101,10 +105,7 @@ public class DetailFragment extends Fragment {
                         addressInfo);
             }
         });
-
-        return view;
     }
-
 
     private ChargeStation getChargeStationData() {
         ChargeStation station = null;
@@ -116,9 +117,15 @@ public class DetailFragment extends Fragment {
     }
 
     private void fillData() {
+        prepareLocationInfo();
+        prepareConnections();
+        prepareUsageRestrictions();
+        prepareDataProvider();
+    }
 
-        //Location
+    private void prepareLocationInfo(){
         if (station.getAddressInfo() != null) {
+
             AddressInfo addressInfo = station.getAddressInfo();
 
             if (addressInfo.getTitle() != null) {
@@ -155,30 +162,10 @@ public class DetailFragment extends Fragment {
             if(addressInfo.getContactEmail() != null && !addressInfo.getContactEmail().isEmpty()){
                 mailAddress.setText(addressInfo.getContactEmail());
             }
-
         }
+    }
 
-        //Connection
-        if (station.getConnections() != null && !station.getConnections().isEmpty()) {
-            String connection                       = "";
-            ArrayList<Connection> connectionList    = station.getConnections();
-
-            for (short i = 0; i < connectionList.size(); i++) {
-                if(connectionList.get(i).getConnectionType() != null){
-                    if(connectionList.get(i).getConnectionType().getTitle() != null){
-                        connection += connectionList.get(i).getConnectionType().getTitle();
-                    }
-                }
-                if (connectionList.get(i).getQuantity() != null) {
-                    connection += "<b>  X" + connectionList.get(i).getQuantity() + "</b>";
-                }
-                if (i + 1 < connectionList.size()) {
-                    connection += "<br>";
-                }
-            }
-            connectionsTv.setText(Html.fromHtml(connection));
-        }
-
+    private void prepareUsageRestrictions(){
         //Status Type
         if(station.getStatusType() != null && station.getStatusType().getTitle() != null){
             operationalStatusTv.setText(station.getStatusType().getTitle());
@@ -237,8 +224,32 @@ public class DetailFragment extends Fragment {
         if(station.getUsageCost() != null){
             usageCost.setText(station.getUsageCost());
         }
+    }
 
-        //Data Provider
+    private void prepareConnections(){
+        if (station.getConnections() != null && !station.getConnections().isEmpty()) {
+
+            String connection                       = "";
+            ArrayList<Connection> connectionList    = station.getConnections();
+
+            for (short i = 0; i < connectionList.size(); i++) {
+                if(connectionList.get(i).getConnectionType() != null){
+                    if(connectionList.get(i).getConnectionType().getTitle() != null){
+                        connection += connectionList.get(i).getConnectionType().getTitle();
+                    }
+                }
+                if (connectionList.get(i).getQuantity() != null) {
+                    connection += "<b>  X" + connectionList.get(i).getQuantity() + "</b>";
+                }
+                if (i + 1 < connectionList.size()) {
+                    connection += "<br>";
+                }
+            }
+            connectionsTv.setText(Html.fromHtml(connection));
+        }
+    }
+
+    private void prepareDataProvider(){
         if (station.getDataProvider() != null) {
             DataProvider dataProvider = station.getDataProvider();
 

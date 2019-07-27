@@ -34,7 +34,7 @@ public class  MainActivity extends AppCompatActivity implements BottomNavigation
         setContentView(R.layout.activity_main);
 
         toolbar                 = findViewById(R.id.main_toolbar);
-        viewPager               = findViewById(R.id.viewpager);
+        viewPager               = findViewById(R.id.viewpager_main);
         bottomNavigationView    = findViewById(R.id.bottom_navigation);
 
         setUpViewPager();
