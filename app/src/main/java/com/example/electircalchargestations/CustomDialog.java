@@ -5,15 +5,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class CustomDialog extends Dialog implements android.view.View.OnClickListener {
 
-    private Activity activity;
-    private Button   buttonOk;
+    private Activity    activity;
+    private TextView    headingTv;
+    private TextView    messageTv;
+    private Button      buttonOk;
+    private String      header;
+    private String      message;
 
-    public CustomDialog(Activity activity) {
+    public CustomDialog(Activity activity, String header, String message) {
         super(activity);
-        this.activity = activity;
+        this.activity   = activity;
+        this.header     = header;
+        this.message    = message;
     }
 
     @Override
@@ -23,7 +30,13 @@ public class CustomDialog extends Dialog implements android.view.View.OnClickLis
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog);
 
-        buttonOk = findViewById(R.id.button_ok);
+        headingTv = findViewById(R.id.heading);
+        messageTv = findViewById(R.id.message);
+        buttonOk    = findViewById(R.id.button_ok);
+
+        this.headingTv.setText(header);
+        this.messageTv.setText(message);
+
         buttonOk.setOnClickListener(this);
     }
 

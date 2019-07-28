@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="130dp"
+    android:layout_height="120dp"
     android:background="@drawable/curve_shape"
     android:orientation="vertical">
 
@@ -10,25 +10,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="70dp"
-        android:text="Connection Error"
+        android:layout_marginEnd="60dp"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txt_dia"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="15dp"
-        android:text="You are not connected to Internet."
         android:textColor="#000000"
-        android:textSize="15dp" />
+        android:textSize="13sp" />
 
     <View
         android:layout_width="match_parent"
@@ -37,14 +35,13 @@
 
     <Button
         android:id="@+id/button_ok"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/ripple_effect"
         android:clickable="true"
+        android:focusable="true"
         android:text="@android:string/ok"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold" />
+        android:textColor="@color/colorPrimary" />
 
 </LinearLayout>

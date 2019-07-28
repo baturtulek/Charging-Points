@@ -9,25 +9,43 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="60dp"
         android:layout_marginBottom="85dp"
         android:contentDescription="@string/app_name"
         app:srcCompat="@drawable/electric_car" />
 
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="85dp"
-        android:fontFamily="@font/leckerli_one"
-        android:text="@string/toolbar_text"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="32sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/convergence"
+            android:text="Charging"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/convergence"
+            android:paddingStart="80dp"
+            android:text="Points"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.electircalchargestations;
+package com.example.electircalchargestations.Splash;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.electircalchargestations.CustomDialog;
 import com.example.electircalchargestations.Main.MainActivity;
+import com.example.electircalchargestations.R;
+import com.example.electircalchargestations.Utilities;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -20,7 +23,7 @@ public class SplashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        if(isInternetWorking()){
+        if(Utilities.checkInternetConnection(SplashScreen.this)){
             displaySplashScreen();
         }else{
             showAlertDialog(SplashScreen.this);
@@ -42,20 +45,6 @@ public class SplashScreen extends AppCompatActivity {
         timerTread.start();
     }
 
-    private boolean isInternetWorking() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
-            if (info != null)
-                for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
-        }
-        return false;
-    }
-
     private void startMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -63,9 +52,10 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void showAlertDialog(Activity activity) {
-        CustomDialog cdd = new CustomDialog(activity);
-        cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        cdd.show();
+        CustomDialog dialog = new CustomDialog(activity,"Connection Error", "You are not connected to Internet.");
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
 }

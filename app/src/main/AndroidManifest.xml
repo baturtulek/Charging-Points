@@ -17,7 +17,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".Splash.SplashScreen"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
