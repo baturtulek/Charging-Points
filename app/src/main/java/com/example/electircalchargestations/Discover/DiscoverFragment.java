@@ -10,12 +10,15 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import com.example.electircalchargestations.APIResult;
+import com.example.electircalchargestations.CustomProgressBar;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
@@ -29,13 +32,18 @@ import java.util.List;
 public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStationListener {
 
     private DiscoverViewModel       viewModel;
-    private ProgressBar             progressBar;
     private Spinner                 sItems;
     private RecyclerView            mRecyclerView;
     private RecyclerAdapter         adapter;
     private LinearLayoutManager     layoutManager;
-    private CardView                noStationsFound;
+    private CardView                errorCardView;
     private ArrayList<ChargeStation>stationsList;
+    private TextView                errorMessage;
+
+    private final String FAILED         = "Something went wrong!";
+    private final String UNABLE_TO_FIND = "Unable to find any Stations!";
+    private final String LOAD_COUNTRIES = "Loading Countries...";
+    private final String LOAD_STATIONS  = "Loading Stations...";
 
     @Nullable
     @Override
@@ -44,57 +52,67 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
 
         viewModel       = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         sItems          = view.findViewById(R.id.countrySpinner);
-        progressBar     = view.findViewById(R.id.progressBar);
-        noStationsFound = view.findViewById(R.id.noStationFound);
+        errorCardView   = view.findViewById(R.id.noStationFound);
         mRecyclerView   = view.findViewById(R.id.recyclerView);
         layoutManager   = new LinearLayoutManager(getActivity());
+        errorMessage    = view.findViewById(R.id.error_tv);
         mRecyclerView.setLayoutManager(layoutManager);
-
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 layoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        registerObservers();
+        CustomProgressBar.showProgressBar(getActivity(),false,LOAD_COUNTRIES);
+        countryObserver();
+        stationObserver();
         return view;
     }
 
-    private void registerObservers(){
-
+    private void countryObserver(){
         Observer<List<Country>> countryObserver = new Observer<List<Country>>() {
             @Override
-            public void onChanged(@Nullable List<Country> countries) {
+            public void onChanged(@Nullable final List<Country> countries) {
                 fillSpinner(countries);
-                progressBar.setVisibility(View.GONE);
+                CustomProgressBar.hideProgressBar();
             }
         };
         viewModel.getCountryList().observe(this, countryObserver);
+    }
 
-        Observer<List<ChargeStation>> stationObserver = new Observer<List<ChargeStation>>() {
+    private void stationObserver(){
+        Observer<APIResult<ChargeStation>> stationObserver = new Observer<APIResult<ChargeStation>>() {
             @Override
-            public void onChanged(@Nullable List<ChargeStation> stations) {
-                stationsList = (ArrayList<ChargeStation>) stations;
-                adapter = new RecyclerAdapter((ArrayList) stations, DiscoverFragment.this);
-                mRecyclerView.setAdapter(adapter);
-
-                if(stations.isEmpty()) {
-                    noStationsFound.setVisibility(View.VISIBLE);
+            public void onChanged(@Nullable APIResult<ChargeStation> stationDataWrapper) {
+                if(!stationDataWrapper.HasError()){
+                    stationsList = (ArrayList<ChargeStation>) stationDataWrapper.getListResult();
+                    if(!stationsList.isEmpty()) {
+                        adapter = new RecyclerAdapter(stationsList, DiscoverFragment.this);
+                        mRecyclerView.setAdapter(adapter);
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                    }else{
+                        mRecyclerView.setVisibility(View.GONE);
+                        errorMessage.setText(UNABLE_TO_FIND);
+                        errorCardView.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    Log.d("onFailure", stationDataWrapper.getThrowable().getMessage());
+                    mRecyclerView.setVisibility(View.GONE);
+                    errorMessage.setText(FAILED);
+                    errorCardView.setVisibility(View.VISIBLE);
                 }
-                progressBar.setVisibility(View.GONE);
+                CustomProgressBar.hideProgressBar();
             }
         };
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                adapter = new RecyclerAdapter(new ArrayList<>(), DiscoverFragment.this);
-                mRecyclerView.setAdapter(adapter);
-
-                noStationsFound.setVisibility(View.GONE);
-                progressBar.setVisibility(View.VISIBLE);
-
+                mRecyclerView.setVisibility(View.GONE);
+                errorCardView.setVisibility(View.GONE);
                 String selectedItem = sItems.getSelectedItem().toString();
                 String countryCode  = selectedItem.substring(0, 2);
+
+                CustomProgressBar.showProgressBar(getActivity(), false, LOAD_STATIONS);
                 viewModel.getChargeStationList(countryCode).observe(DiscoverFragment.this, stationObserver);
             }
             @Override

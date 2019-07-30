@@ -1,4 +1,4 @@
-package com.example.electircalchargestations.remote;
+package com.example.electircalchargestations;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
@@ -6,16 +6,13 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-
-import com.example.electircalchargestations.DataWrapper;
-import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.ConnectionType;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.Model.Level;
-import com.example.electircalchargestations.RetrofitService;
-import com.example.electircalchargestations.ReferenceDataRequestBeans;
 import com.example.electircalchargestations.local.AppDatabase;
+import com.example.electircalchargestations.remote.RetrofitService;
+import com.example.electircalchargestations.remote.WebService;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +22,7 @@ public class Repository {
 
     private AppDatabase       database;
     private static WebService webService;
-    private static Repository repository;
+    private static Repository INSTANCE;
 
     protected Repository(Application application){
         webService  = RetrofitService.getRetrofitInstance().create(WebService.class);
@@ -33,10 +30,10 @@ public class Repository {
     }
 
     public synchronized static Repository getInstance(Application application){
-        if (repository == null){
-            repository = new Repository(application);
+        if (INSTANCE == null){
+            INSTANCE = new Repository(application);
         }
-        return repository;
+        return INSTANCE;
     }
 
     public MediatorLiveData<List<Country>> getCountryList(){
@@ -59,7 +56,6 @@ public class Repository {
 
     private void getReferenceDataFromApi() {
         Call<ReferenceDataRequestBeans> call = webService.getReferenceData();
-
         call.enqueue(new Callback<ReferenceDataRequestBeans>(){
             @Override
             public void onResponse(Call<ReferenceDataRequestBeans> call, Response<ReferenceDataRequestBeans> response) {
@@ -75,10 +71,9 @@ public class Repository {
         });
     }
 
-    public LiveData<DataWrapper<ChargeStation>> getChargeStationListByCountry(String countryCode){
-
-        final MutableLiveData<DataWrapper<ChargeStation>> apiResponse   = new MutableLiveData<>();
-        Call<List<ChargeStation>> call                                  = webService.getChargeStationListByCountry(
+    public LiveData<APIResult<ChargeStation>> getChargeStationListByCountry(String countryCode){
+        final MutableLiveData<APIResult<ChargeStation>> apiResponse   = new MutableLiveData<>();
+        Call<List<ChargeStation>> call                                = webService.getChargeStationListByCountry(
                 Constants.OUTPUT_FORMAT,
                 Constants.MAX_RESULT,
                 Constants.OPEN_DATA_LICENSE,
@@ -88,12 +83,12 @@ public class Repository {
             @Override
             public void onResponse(Call<List<ChargeStation>> call, Response<List<ChargeStation>> response) {
                 if(response.isSuccessful()){
-                    apiResponse.postValue(new DataWrapper<ChargeStation>(response.body()));
+                    apiResponse.postValue(new APIResult<ChargeStation>(response.body()));
                 }
             }
             @Override
             public void onFailure(Call<List<ChargeStation>> call, Throwable t){
-                apiResponse.postValue(new DataWrapper<ChargeStation>(t));
+                apiResponse.postValue(new APIResult<ChargeStation>(t));
             }
 
         });

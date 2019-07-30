@@ -9,10 +9,13 @@ public class ReferenceDataRequestBeans {
 
     @SerializedName("Countries")
     private List<Country>           countryList         = null;
+
     @SerializedName("ChargerTypes")
     private List<Level>             chargerTypeList     = null;
+
     @SerializedName("ConnectionTypes")
     private List<ConnectionType>    connectionTypeList  = null;
+
 
     public List<Country> getCountryList() {
         return countryList;
@@ -26,10 +29,4 @@ public class ReferenceDataRequestBeans {
         return connectionTypeList;
     }
 
-    @Override
-    public String toString() {
-        return "ReferenceDataRequestBeans{" +
-                "countryList=" + countryList.toString() +
-                '}';
-    }
 }

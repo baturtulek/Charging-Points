@@ -1,4 +1,5 @@
-package com.example.electircalchargestations;
+package com.example.electircalchargestations.remote;
+import com.example.electircalchargestations.Constants;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
