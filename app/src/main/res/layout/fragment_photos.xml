@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_photo_library_black_50dp" />
 
             <TextView
-                android:id="@+id/no_photo_tv"
+                android:id="@+id/error_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
