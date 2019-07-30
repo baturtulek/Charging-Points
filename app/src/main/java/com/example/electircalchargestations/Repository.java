@@ -6,7 +6,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-import android.util.Log;
+
+import com.example.electircalchargestations.DataWrapper;
 import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.ConnectionType;
@@ -26,7 +27,7 @@ public class Repository {
     private static WebService webService;
     private static Repository repository;
 
-    private Repository(Application application){
+    protected Repository(Application application){
         webService  = RetrofitService.getRetrofitInstance().create(WebService.class);
         database    = AppDatabase.getInstance(application);
     }
@@ -74,11 +75,10 @@ public class Repository {
         });
     }
 
+    public LiveData<DataWrapper<ChargeStation>> getChargeStationListByCountry(String countryCode){
 
-    public MutableLiveData<List<ChargeStation>> getChargeStationListByCountry(String countryCode){
-
-        MutableLiveData<List<ChargeStation>> stationData    = new MutableLiveData<>();
-        Call<List<ChargeStation>> call                      = webService.getChargeStationListByCountry(
+        final MutableLiveData<DataWrapper<ChargeStation>> apiResponse   = new MutableLiveData<>();
+        Call<List<ChargeStation>> call                                  = webService.getChargeStationListByCountry(
                 Constants.OUTPUT_FORMAT,
                 Constants.MAX_RESULT,
                 Constants.OPEN_DATA_LICENSE,
@@ -88,15 +88,16 @@ public class Repository {
             @Override
             public void onResponse(Call<List<ChargeStation>> call, Response<List<ChargeStation>> response) {
                 if(response.isSuccessful()){
-                    stationData.setValue(response.body());
+                    apiResponse.postValue(new DataWrapper<ChargeStation>(response.body()));
                 }
             }
             @Override
-            public void onFailure(Call<List<ChargeStation>> call, Throwable t) {
-                Log.d("OnFailure",t.getMessage());
+            public void onFailure(Call<List<ChargeStation>> call, Throwable t){
+                apiResponse.postValue(new DataWrapper<ChargeStation>(t));
             }
+
         });
-        return stationData;
+        return apiResponse;
     }
 
     private void insertReferenceData(List<Country> countryList, List<Level> chargerTypeList, List<ConnectionType> connectionTypeList){

@@ -9,7 +9,6 @@
     <string name="discover_fragment_recycler_operational">Operational</string>
     <string name="discover_fragment_recycler_reqMembership">Required Membership</string>
     <string name="discover_fragment_recycler_location">Location</string>
-    <string name="discover_fragment_no_station">Unable to find any Stations!</string>
     <string name="detail_fragment_details_tab">Details</string>
     <string name="detail_fragment_photos_tab">Photos</string>
     <string name="station_detail_user_photo_description">User Profile Image</string>
@@ -28,4 +27,5 @@
     <string name="station_detail_usage_type">Usage Type</string>
     <string name="station_detail_usage_cost">Usage Cost</string>
     <string name="station_detail_undefined">Undefined</string>
+    <string name="options_tv">Settings</string>
 </resources>
