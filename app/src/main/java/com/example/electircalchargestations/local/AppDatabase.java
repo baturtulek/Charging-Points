@@ -10,23 +10,26 @@ import com.example.electircalchargestations.Model.Level;
 @Database(entities = {Country.class, Level.class, ConnectionType.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static  AppDatabase         dbInstance;
+    private static  AppDatabase         INSTANCE;
     public abstract CountryDao          countryDao();
     public abstract ChargerTypeDao      chargerTypeDao();
     public abstract ConnectionTypeDao   connectionTypeDao();
+    private static final Object sLock   = new Object();
 
     protected AppDatabase() { }
 
     public static synchronized AppDatabase getInstance(Context context) {
-        if (dbInstance == null) {
-            dbInstance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "electric-charging-stations")
-                    .fallbackToDestructiveMigration()
-                    .build();
+        synchronized (sLock) {
+            if (INSTANCE == null) {
+                INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,
+                        "charging-stations.db")
+                        .build();
+            }
+            return INSTANCE;
         }
-        return dbInstance;
     }
 
     public static synchronized void destroyInstance(){
-        dbInstance = null;
+        INSTANCE = null;
     }
 }

@@ -7,7 +7,7 @@ import android.widget.TextView;
 public class CustomProgressBar extends Dialog {
 
     private static CustomProgressBar mCustomProgressbar;
-    private static TextView status;
+    private static TextView          status;
 
     private CustomProgressBar(Context context) {
         super(context);
@@ -17,7 +17,6 @@ public class CustomProgressBar extends Dialog {
         this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
-
     public static void showProgressBar(Context context, boolean cancelable) {
         showProgressBar(context, cancelable, null);
     }
@@ -26,7 +25,6 @@ public class CustomProgressBar extends Dialog {
         if (mCustomProgressbar != null && mCustomProgressbar.isShowing()) {
             mCustomProgressbar.cancel();
         }
-
         mCustomProgressbar = new CustomProgressBar(context);
         mCustomProgressbar.setCancelable(cancelable);
         status.setText(message);

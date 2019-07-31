@@ -13,13 +13,13 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import com.example.electircalchargestations.Constants;
 import com.example.electircalchargestations.R;
-import com.example.electircalchargestations.SpinnerAdapter;
+
 import java.util.ArrayList;
 
 public class OptionsFragment extends Fragment {
 
     private Spinner maxResultSpinner;
-    private Switch openLicenseSwitch;
+    private Switch  openLicenseSwitch;
 
     @Nullable
     @Override

@@ -13,7 +13,7 @@ import com.example.electircalchargestations.Map.MapFragment;
 import com.example.electircalchargestations.Options.OptionsFragment;
 import com.example.electircalchargestations.R;
 import com.example.electircalchargestations.Discover.DiscoverFragment;
-import com.example.electircalchargestations.ViewPagerAdapter;
+import com.example.electircalchargestations.Adapters.ViewPagerAdapter;
 import android.view.View;
 
 public class  MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{

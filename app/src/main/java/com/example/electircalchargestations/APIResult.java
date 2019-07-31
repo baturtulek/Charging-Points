@@ -10,21 +10,13 @@ public class APIResult<T> {
 
     public APIResult(T singleResult) {
         this.singleResult = singleResult;
-        this.listResult   = null;
-        this.throwable    = null;
-        this.hasError     = false;
     }
 
     public APIResult(List<T> data) {
         this.listResult   = data;
-        this.singleResult = null;
-        this.throwable    = null;
-        this.hasError     = false;
     }
 
     public APIResult(Throwable throwable) {
-        this.singleResult   = null;
-        this.listResult     = null;
         this.throwable      = throwable;
         this.hasError       = true;
     }

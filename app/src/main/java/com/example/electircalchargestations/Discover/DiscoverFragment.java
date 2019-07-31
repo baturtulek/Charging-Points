@@ -10,11 +10,11 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.electircalchargestations.APIResult;
@@ -22,8 +22,8 @@ import com.example.electircalchargestations.CustomProgressBar;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Country;
 import com.example.electircalchargestations.R;
-import com.example.electircalchargestations.RecyclerAdapter;
-import com.example.electircalchargestations.SpinnerAdapter;
+import com.example.electircalchargestations.Adapters.RecyclerAdapter;
+import com.example.electircalchargestations.Adapters.SpinnerAdapter;
 import com.example.electircalchargestations.StationDetail.StationDetailActivity;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -31,14 +31,15 @@ import java.util.List;
 
 public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStationListener {
 
+    private ArrayList<ChargeStation>stationsList;
     private DiscoverViewModel       viewModel;
     private Spinner                 sItems;
     private RecyclerView            mRecyclerView;
     private RecyclerAdapter         adapter;
     private LinearLayoutManager     layoutManager;
     private CardView                errorCardView;
-    private ArrayList<ChargeStation>stationsList;
     private TextView                errorMessage;
+    private ImageView               errorImage;
 
     private final String FAILED         = "Something went wrong!";
     private final String UNABLE_TO_FIND = "Unable to find any Stations!";
@@ -52,17 +53,19 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
 
         viewModel       = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         sItems          = view.findViewById(R.id.countrySpinner);
-        errorCardView   = view.findViewById(R.id.noStationFound);
         mRecyclerView   = view.findViewById(R.id.recyclerView);
-        layoutManager   = new LinearLayoutManager(getActivity());
+        errorCardView   = view.findViewById(R.id.errorCardView);
+        errorImage      = view.findViewById(R.id.error_img);
         errorMessage    = view.findViewById(R.id.error_tv);
-        mRecyclerView.setLayoutManager(layoutManager);
 
+        layoutManager   = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 layoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        CustomProgressBar.showProgressBar(getActivity(),false,LOAD_COUNTRIES);
+        CustomProgressBar.showProgressBar(getActivity(),false, LOAD_COUNTRIES);
+
         countryObserver();
         stationObserver();
         return view;
@@ -86,19 +89,12 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
                 if(!stationDataWrapper.HasError()){
                     stationsList = (ArrayList<ChargeStation>) stationDataWrapper.getListResult();
                     if(!stationsList.isEmpty()) {
-                        adapter = new RecyclerAdapter(stationsList, DiscoverFragment.this);
-                        mRecyclerView.setAdapter(adapter);
-                        mRecyclerView.setVisibility(View.VISIBLE);
+                        setUpRecyclerView();
                     }else{
-                        mRecyclerView.setVisibility(View.GONE);
-                        errorMessage.setText(UNABLE_TO_FIND);
-                        errorCardView.setVisibility(View.VISIBLE);
+                        displayEmptyStation();
                     }
                 }else{
-                    Log.d("onFailure", stationDataWrapper.getThrowable().getMessage());
-                    mRecyclerView.setVisibility(View.GONE);
-                    errorMessage.setText(FAILED);
-                    errorCardView.setVisibility(View.VISIBLE);
+                    displayErrorMessage();
                 }
                 CustomProgressBar.hideProgressBar();
             }
@@ -107,12 +103,13 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mRecyclerView.setVisibility(View.GONE);
-                errorCardView.setVisibility(View.GONE);
                 String selectedItem = sItems.getSelectedItem().toString();
                 String countryCode  = selectedItem.substring(0, 2);
 
+                mRecyclerView.setVisibility(View.GONE);
+                errorCardView.setVisibility(View.GONE);
                 CustomProgressBar.showProgressBar(getActivity(), false, LOAD_STATIONS);
+
                 viewModel.getChargeStationList(countryCode).observe(DiscoverFragment.this, stationObserver);
             }
             @Override
@@ -126,10 +123,29 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
             for (Country c : countryList) {
                 spinnerArray.add(c.getISOCode() + " - " + c.getTitle());
             }
-
             SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_country_layout,  spinnerArray);
             sItems.setAdapter(spinnerAdapter);
         }
+    }
+
+    private void setUpRecyclerView(){
+        adapter = new RecyclerAdapter(stationsList, DiscoverFragment.this);
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void displayEmptyStation(){
+        mRecyclerView.setVisibility(View.GONE);
+        errorCardView.setVisibility(View.VISIBLE);
+        errorImage.setImageResource(R.drawable.ic_warning_black_50dp);
+        errorMessage.setText(UNABLE_TO_FIND);
+    }
+
+    private void displayErrorMessage(){
+        mRecyclerView.setVisibility(View.GONE);
+        errorCardView.setVisibility(View.VISIBLE);
+        errorImage.setImageResource(R.drawable.ic_error_black_50dp);
+        errorMessage.setText(FAILED);
     }
 
     @Override
@@ -140,4 +156,5 @@ public class DiscoverFragment extends Fragment implements RecyclerAdapter.OnStat
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.electircalchargestations;
+package com.example.electircalchargestations.Adapters;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.example.electircalchargestations.Model.AddressInfo;
 import com.example.electircalchargestations.Model.ChargeStation;
 import com.example.electircalchargestations.Model.Connection;
+import com.example.electircalchargestations.R;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
@@ -119,4 +121,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         void onItemClick(int position);
 
     }
+
 }
