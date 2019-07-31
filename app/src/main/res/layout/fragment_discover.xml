@@ -17,7 +17,15 @@
         android:dropDownWidth="225dp"
         android:spinnerMode="dropdown" />
 
-            <FrameLayout
+    <TextView
+        android:id="@+id/numOfStations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp" />
+
+    <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -66,4 +74,5 @@
                     android:layout_height="match_parent"/>
 
             </FrameLayout>
+
 </LinearLayout>
