@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="@string/discover_fragment_recycler_location"
+                android:text="@string/recycler_view_discover_fragment_location"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -48,20 +48,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:paddingLeft="15dp" />
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp" />
 
             <TextView
                 android:id="@+id/address2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp" />
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp" />
 
             <TextView
                 android:id="@+id/connectionsTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="@string/discover_fragment_recycler_connection"
+                android:text="@string/recycler_view_discover_fragment_connection"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -71,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:lineSpacingExtra="4dp"
-                android:paddingLeft="15dp" />
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp" />
 
         </LinearLayout>
 

@@ -33,7 +33,7 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="0"
-                    android:contentDescription="@string/station_detail_user_photo_description"
+                    android:contentDescription="@string/recycler_view_station_detail_user_photo_description"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="12dp"
-                    android:contentDescription="@string/station_detail_media_photo_description" />
+                    android:contentDescription="@string/recycler_view_station_detail_media_photo_description" />
 
                 <ProgressBar
                     android:id="@+id/picasso_progress"
@@ -97,6 +97,9 @@
                     android:indeterminateTint="@color/colorPrimary"/>
 
             </FrameLayout>
+
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
+
 </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:paddingStart="15dp"
         android:paddingEnd="30dp"
-        android:text="@string/options_tv"
+        android:text="@string/options_fragment_options_tv"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -39,19 +39,19 @@
                 <TextView
                     android:id="@+id/maxResultTv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.7"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Max Result"
-                    android:textSize="15sp" />
+                    android:text="@string/options_fragment_max_stations"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.3"
                     android:orientation="vertical">
 
                     <Spinner
@@ -59,31 +59,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:dropDownWidth="match_parent" />
+                        android:dropDownWidth="match_parent"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:textAlignment="center" />
+
                 </LinearLayout>
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
+                    android:layout_weight="0.7"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Open Licensed Content"
-                    android:textSize="15sp" />
+                    android:text="@string/options_fragment_open_Data"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.3"
                     android:orientation="vertical">
 
                     <Switch

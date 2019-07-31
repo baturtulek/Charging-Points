@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -93,7 +94,7 @@
                             android:drawableStart="@drawable/ic_local_phone_black_20dp"
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
-                            android:text="@string/station_detail_undefined"
+                            android:text="@string/undefined"
                             android:textSize="13sp"
                             tools:visibility="visible" />
 
@@ -107,7 +108,7 @@
                             android:drawableStart="@drawable/ic_mail_black_20dp"
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
-                            android:text="@string/station_detail_undefined"
+                            android:text="@string/undefined"
                             android:textSize="13sp"
                             tools:visibility="visible" />
 
@@ -149,7 +150,7 @@
                         android:gravity="center_vertical"
                         android:lineSpacingExtra="7dp"
                         android:paddingStart="5dp"
-                        android:text="@string/station_detail_undefined" />
+                        android:text="@string/undefined" />
 
                 </LinearLayout>
 
@@ -207,7 +208,7 @@
                                     android:layout_height="match_parent"
                                     android:paddingStart="10dp"
                                     android:paddingEnd="10dp"
-                                    android:text="@string/station_detail_undefined"
+                                    android:text="@string/undefined"
                                     android:textStyle="italic" />
 
                                 <CheckBox
@@ -245,7 +246,7 @@
                                     android:layout_height="match_parent"
                                     android:paddingStart="10dp"
                                     android:paddingEnd="10dp"
-                                    android:text="@string/station_detail_undefined"
+                                    android:text="@string/undefined"
                                     android:textStyle="italic" />
 
                                 <CheckBox
@@ -283,7 +284,7 @@
                                     android:layout_height="match_parent"
                                     android:paddingStart="10dp"
                                     android:paddingEnd="10dp"
-                                    android:text="@string/station_detail_undefined"
+                                    android:text="@string/undefined"
                                     android:textStyle="italic" />
 
                                 <CheckBox
@@ -317,7 +318,7 @@
                                 android:layout_weight="1"
                                 android:paddingStart="8dp"
                                 android:paddingEnd="10dp"
-                                android:text="@string/station_detail_undefined" />
+                                android:text="@string/undefined" />
                         </TableRow>
 
                         <TableRow
@@ -341,7 +342,7 @@
                                 android:layout_weight="1"
                                 android:paddingStart="8dp"
                                 android:paddingEnd="10dp"
-                                android:text="@string/station_detail_undefined" />
+                                android:text="@string/undefined" />
 
                         </TableRow>
 
@@ -366,7 +367,7 @@
                                 android:layout_weight="1"
                                 android:paddingStart="8dp"
                                 android:paddingEnd="10dp"
-                                android:text="@string/station_detail_undefined" />
+                                android:text="@string/undefined" />
                         </TableRow>
 
                     </TableLayout>
@@ -423,7 +424,7 @@
                                 android:layout_marginTop="7dp"
                                 android:layout_marginBottom="2dp"
                                 android:paddingStart="5dp"
-                                android:text="@string/station_detail_undefined"
+                                android:text="@string/undefined"
                                 android:textSize="16sp"
                                 android:textStyle="bold|italic" />
 
@@ -434,7 +435,7 @@
                                 android:layout_marginBottom="15dp"
                                 android:lineSpacingExtra="2dp"
                                 android:paddingStart="5dp"
-                                android:text="@string/station_detail_undefined" />
+                                android:text="@string/undefined" />
 
                             <TextView
                                 android:id="@+id/dataProviderUrlTv"
@@ -443,7 +444,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:autoLink="web"
                                 android:paddingStart="5dp"
-                                android:text="@string/station_detail_undefined" />
+                                android:text="@string/undefined" />
 
                         </LinearLayout>
 

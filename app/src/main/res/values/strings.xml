@@ -1,21 +1,27 @@
 <resources>
-    <string name="toolbar_text"> Charging Points </string>
+
     <string name="app_name">Charging Stations</string>
-    <string name="title_discover">Discover</string>
-    <string name="title_map">Map</string>
-    <string name="title_options">Options</string>
-    <string name="title_activity_map_fragment">Map</string>
-    <string name="discover_fragment_recycler_connection">Connections</string>
-    <string name="discover_fragment_recycler_operational">Operational</string>
-    <string name="discover_fragment_recycler_reqMembership">Required Membership</string>
-    <string name="discover_fragment_recycler_location">Location</string>
-    <string name="detail_fragment_details_tab">Details</string>
-    <string name="detail_fragment_photos_tab">Photos</string>
-    <string name="station_detail_user_photo_description">User Profile Image</string>
-    <string name="station_detail_media_photo_description">Media Item Image</string>
-    <string name="station_detail_rating">Rating : </string>
-    <string name="no_comment">No Comments Found!</string>
-    <string name="no_photo">No Photos Found!</string>
+    <string name="undefined">Undefined</string>
+
+
+    <!-- Splash Screen -->
+    <string name="splash_text1">Charging</string>
+    <string name="splash_text2">Points</string>
+
+
+    <!-- Main Activity -->
+    <string name="bottom_nav_title_discover">Discover</string>
+    <string name="bottom_nav_title_map">Map</string>
+    <string name="bottom_nav_title_options">Options</string>
+
+
+    <!-- Options Fragment -->
+    <string name="options_fragment_max_stations">Number of stations</string>
+    <string name="options_fragment_open_Data">Use Only Open Licensed Data</string>
+    <string name="options_fragment_options_tv">Options</string>
+
+
+    <!-- Detail Fragment -->
     <string name="station_detail_location_detail">Location Details</string>
     <string name="station_detail_equipment">Equipment Details</string>
     <string name="station_detail_usage_restrictions">Usage Restrictions</string>
@@ -26,6 +32,18 @@
     <string name="station_detail_pay_at_location">Pat At Location</string>
     <string name="station_detail_usage_type">Usage Type</string>
     <string name="station_detail_usage_cost">Usage Cost</string>
-    <string name="station_detail_undefined">Undefined</string>
-    <string name="options_tv">Settings</string>
+
+
+    <!-- RecyclerView Items-->
+    <!-- Discover Fragment-->
+    <string name="recycler_view_discover_fragment_connection">Connections</string>
+    <string name="recycler_view_discover_fragment_location">Location</string>
+
+    <!-- Station Detail Fragment -->
+    <string name="recycler_view_station_detail_user_photo_description">User Profile Image</string>
+    <string name="recycler_view_station_detail_media_photo_description">Media Item Image</string>
+    <string name="recycler_view_station_detail_rating">Rating : </string>
+    <string name="recycler_view_station_detail_no_comment">No Comments Found!</string>
+    <string name="recycler_view_station_detail_no_photo">No Photos Found!</string>
+
 </resources>
