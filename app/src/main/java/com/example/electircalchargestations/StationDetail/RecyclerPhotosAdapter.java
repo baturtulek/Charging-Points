@@ -48,6 +48,7 @@ public class RecyclerPhotosAdapter extends RecyclerView.Adapter<RecyclerPhotosAd
 
             Picasso.get()
                     .load(mediaItem.getItemURL())
+                    .fit()
                     .error(R.drawable.ic_error_outline_black_24dp)
                     .into(holder.mediaItem, new Callback() {
                         @Override
