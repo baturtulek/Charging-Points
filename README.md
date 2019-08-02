@@ -15,6 +15,15 @@
   <img src="https://user-images.githubusercontent.com/36362640/62324044-53398380-b4b1-11e9-96fc-7907cbee4919.gif" width=210 height=410 />
 </p>
 
+<hr>
+<br>
+
+<h3>Data Provider</h3>
+<ul>
+  <li>Open Charge Map</li>
+  <li><a href="https://openchargemap.org/site/">https://openchargemap.org/site/</a></li>
+ </ul>
+    
 <h3>Source Code</h3>
 <ul>
 <li><a href="https://github.com/baturtulek/Charging-Points">https://github.com/baturtulek/Charging-Points</a></li>
